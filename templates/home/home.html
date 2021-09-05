@@ -5,11 +5,19 @@
 	<title></title>
 </head>
 <body>
+	<div style="min-height: 720px;">
 	{% include 'home/nav.html' %}
 	<br><br><br>
 	<p>This is home page</p>
-
+	<br><br><br><br>
+	<p>This is home page</p>
 	
+	{% if user.is_authenticated %}
+	<p> The user is {{ user.username }}</p>
+	{% else %}
+	<p>not a user</p>
+	{% endif %}
+	</div>
 	{% include 'home/footer.html' %}
 </body>
 </html>

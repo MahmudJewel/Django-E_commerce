@@ -1,4 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib.auth.models import Group
+
 from customer import forms as CFORM
 from customer import models as CMODEL
 
@@ -17,8 +19,9 @@ def customerSignup(request):
 			customer= customerForm.save(commit=False)
 			customer.user=user
 			customer.save()
-			###
-			###
+			customer_group=Group.objects.get_or_create(name='CUSTOMER')
+			#customer_group[0].user_set.add(user)
+			return redirect('login')
 			
 	context={
 		'customerForm': customerForm,

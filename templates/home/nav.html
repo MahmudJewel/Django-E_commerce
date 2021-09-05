@@ -46,8 +46,16 @@
 
         <div class="navbar-nav">
            <a style="color: aqua;" href="/" class="nav-item nav-link">Home</a>
+
+           {% if user.is_authenticated %}
+           <p class="nav-item nav-link" style="color:black;"> Hello {{user.username}} </p>
+          <a href="/logout" class="btn btn-lg btn-info"> Log out</a>
+
+          {% else %}
           <a href="/customer/signup" class="nav-item nav-link" style="color:aqua;">Sign up</a>
           <a href="/login" class="btn btn-lg btn-info"> Log In</a>
+          {% endif %}
+          
         </div>
       </div>
     </nav>
