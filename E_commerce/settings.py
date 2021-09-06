@@ -133,3 +133,5 @@ STATICFILES_DIRS = [   #Search during collectstatic
 STATIC_ROOT = os.path.join(BASE_DIR, 'djangoAutoStatic') #collectstatic==> automatically created 'djangoStatic' folder.
 MEDIA_ROOT=os.path.join(BASE_DIR,'static') #for imagefield
 #End added
+
+#LOGIN_REDIRECT_URL='/afterlogin'

@@ -6,8 +6,11 @@ from home import views
 
 
 urlpatterns = [
-    path('',views.home),
+    path('', views.home, name='home'),
+    path('home/', views.customer_home, name='customer_home'),
+
     path('login', LoginView.as_view(template_name='home/login.html'), name='login'),
     path('logout', LogoutView.as_view(template_name='home/logout.html'), name='logout'),
-
+    
+    path('afterlogin', views.afterlogin_view, name='afterlogin_view'),
 ]

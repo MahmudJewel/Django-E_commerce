@@ -20,8 +20,8 @@ def customerSignup(request):
 			customer.user=user
 			customer.save()
 			customer_group=Group.objects.get_or_create(name='CUSTOMER')
-			#customer_group[0].user_set.add(user)
-			return redirect('login')
+			customer_group[0].user_set.add(user)
+		return redirect('login')
 			
 	context={
 		'customerForm': customerForm,
