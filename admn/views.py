@@ -15,4 +15,14 @@ def dashboard_view(request):
 
 
 def admin_customer_side_var(request):
-	return render(request, 'admn/admin-customer-side.html')
+	customers=CMODEL.Customer.objects.all()
+	context={
+		'customers': customers
+	}
+	return render(request, 'admn/admin-customer-side.html',context)
+
+def update_customer_view(request, pk):
+	return render(request,'admn/update-customer.html')
+
+def delete_customer_view(request, pk):
+	return render(request,'admn/update-customer.html')
