@@ -26,10 +26,10 @@
     }
 
     .left_area h3 {
-      color: #fff;
+      color: orange;
       margin: 0px;
       text-transform: uppercase;
-      font-size: 22px;
+      font-size: 20px;
       font-weight: 900;
     }
 
@@ -108,7 +108,7 @@
       cursor: pointer;
       left: 300px;
       font-size: 20px;
-      margin: 5px 0;
+      margin: 0px 0px;
       transition: 0.5s;
       transition-property: color;
     }
@@ -164,7 +164,7 @@
       <i style="left: 200px;margin-top: 17px;"class="fas fa-bars" id="sidebar_btn"></i>
     </label>
     <div class="left_area">
-      <h3>Online Exam</h3>
+      <h3>Shopping Mall</h3>
     </div>
     <div class="right_area">
       <a href="/logout" class="logout_btn">Logout</a>
@@ -175,16 +175,16 @@
   <div class="sidebar">
     <center>
 
-      <img src="{% static "image/admin.png" %}" class="profile_image" alt="">
+      <img src="{% static 'image/admin.png' %}" class="profile_image" alt="">
       <h4>Admin</h4>
 
     </center>
 
-    <a href="/admin-dashboard"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a>
-    <a href="/admin-teacher"><i class="fas fa-chalkboard-teacher"></i><span>Teacher</span></a>
-    <a href="/admin-student"><i class="fas fa-user-graduate"></i><span>Student</span></a>
-    <a href="/admin-course"><i class="fas fa-book"></i><span>Courses</span></a>
-    <a href="/admin-question"><i class="fas fa-question-circle"></i><span>Questions</span></a>
+    <a href="dashboard"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a>
+    <a href="admin-customer"><i class="fas fa-chalkboard-teacher"></i><span>Customer</span></a>
+    <a href="/admin-student"><i class="fas fa-user-graduate"></i><span>Orders</span></a>
+    <a href="/admin-course"><i class="fas fa-book"></i><span>Category</span></a>
+    <a href="/admin-question"><i class="fas fa-question-circle"></i><span>Pending Orders</span></a>
     
 
 
