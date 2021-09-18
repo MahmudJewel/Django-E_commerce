@@ -29,7 +29,7 @@
 
   <div class="bs-example">
     <nav class="navbar navbar-expand-md  navbar-dark fixed-top nav-tabs" style="background-color: #637BAD;">
-    <a style="color: aqua;text-decoration: none; " href="/"><font face = "Comic sans MS" size =" 5"> Shopping mall </font><br /></a> 
+    <a style="color: aqua;text-decoration: none; " href="/"><font face = "Comic sans MS" size =" 5"> Library Management </font><br /></a> 
       <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -48,7 +48,7 @@
            <a style="color: aqua;" href="/" class="nav-item nav-link">Home</a>
 
            {% if user.is_authenticated %}
-           <p class="nav-item nav-link" style="color:black;"> Hello {{user.username}} </p>
+           <a href="/customer/profile/{{user.id}}" class="nav-item nav-link" style="color:black;"> Hello {{user.username}}</a>
           <a href="/logout" class="btn btn-lg btn-info"> Log out</a>
 
           {% else %}
@@ -59,6 +59,18 @@
         </div>
       </div>
     </nav>
+
+    <div style="text-align: center;">
+          {% if messages %}
+          <br><br><br>
+            {% for msg in messages %}
+              <div class="alert alert-{{msg.tags}}">
+                {{msg}}
+              </div>
+            {% endfor %}
+          {% endif %}
+        </div>
+
   </div>
 </body>
 

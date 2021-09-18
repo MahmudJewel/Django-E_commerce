@@ -131,7 +131,9 @@ STATICFILES_DIRS = [   #Search during collectstatic
 ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'djangoAutoStatic') #collectstatic==> automatically created 'djangoStatic' folder.
-MEDIA_ROOT=os.path.join(BASE_DIR,'static') #for imagefield
+
+MEDIA_ROOT=os.path.join(BASE_DIR,'media') #for imagefield
+MEDIA_URL = "/media/" #it will help to access static directory through browser
 #End added
 
-#LOGIN_REDIRECT_URL='/afterlogin'
+LOGIN_REDIRECT_URL='/afterlogin'
