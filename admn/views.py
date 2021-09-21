@@ -54,11 +54,20 @@ def update_customer_view(request, pk):
 		'customer':customer,
 		'user' : user,
 	}
-	return render(request,'admn/update-customer.html',context)
+	return render(request, 'admn/update-customer.html',context)
 
 
 
-def delete_customer_view(request, pk):
-	return render(request,'admn/update-customer.html')
-
+def delete_customer_view(request,  pk):
+	customer = CMODEL.Customer.objects.get(id=pk)
+	print(f" customer's name : {customer.mobile}")
+	context = {
+		"customer" : customer,
+	}
+	if request.method == 'POST':
+		customer=CMODEL.Customer.objects.get(id=pk)
+		user=CMODEL.User.objects.get(id=customer.user_id)
+		user.delete()
+		return redirect('customer-list')
+	return render(request,'admn/delete-customer.html', context)
 #======================= End Admin-Customer ===============================

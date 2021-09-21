@@ -1,0 +1,15 @@
+{% extends 'admn/adminbase.html' %}
+{% load widget_tweaks %}
+
+{% block content %}
+
+<section style="min-height:720px;">
+	<form method = 'post'>
+		{% csrf_token %}
+		Do U want to delete {{customer.get_username}}
+		<br>
+		<button type="submit">Yes</button>
+		<a href="/admn/customer-list">Cancel</a>
+		</form>
+</section>
+{% endblock content %}
