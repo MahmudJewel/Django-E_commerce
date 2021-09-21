@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import Group
+from django.contrib.auth.models import User
 from django.contrib import messages
 
 from customer import forms as CFORM
@@ -34,7 +35,10 @@ def upadate_profile_view(request, pk):
 	
 	userForm=CFORM.EditForm(instance = request.user)
 	customerForm = CFORM.customerForm(instance=request.user.profile)
-
+	user=CMODEL.User.objects.get(id=pk)
+	customer=CMODEL.Customer.objects.get(user=user)
+	#print('customer"s mobile:', customer.mobile, customer.address, customer.birth_date)
+	print('Customer img: ', customer.profile_pic)
 	if request.method == 'POST':
 		userForm=CFORM.EditForm(request.POST, instance=request.user)
 		customerForm = CFORM.customerForm(request.POST, request.FILES, instance=request.user.profile) #profile is onetoonefield name
@@ -47,7 +51,8 @@ def upadate_profile_view(request, pk):
 			return redirect('/')
 	context={
 		'userForm':userForm,
-		'customerForm':customerForm
+		'customerForm':customerForm,
+		'customer':customer,
 	}
 
 	return render(request,'customer/profile.html', context)

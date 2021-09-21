@@ -174,8 +174,11 @@
   <!--sidebar start-->
   <div class="sidebar">
     <center>
-
-      <img src="{% static 'image/admin.png' %}" class="profile_image" alt="">
+      {% if user.is_authenticated %}
+      <img src="{% static user.profile_pic.url %}" class="profile_image" alt="nv">
+      {% else %}
+      <img src="{% static 'profile_pic/customer.png' %}" class="profile_image" alt="nv">
+      {% endif %}
       <h4>Admin</h4>
 
     </center>

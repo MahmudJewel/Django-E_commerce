@@ -1,6 +1,6 @@
 {% extends 'admn/adminbase.html' %}
 {% block content %}
-{%load static%}
+{% load static %}
 
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -31,29 +31,34 @@
     <table class="table table-hover" id="dev-table">
       <thead>
         <tr>
-
           <th>Name</th>
+          <th>Username</th>
           <th>Profile Picture</th>
+          <th>Email</th>
           <th>Mobile</th>
           <th>Address</th>
-         
+         <th>Birth date</th>
           <th>Update</th>
           <th>Delete</th>
         </tr>
       </thead>
+
       {% for t in customers %}
       <tr>
 
         <td> {{t.get_name}}</td>
+        <td> {{t.get_username}}</td>
 
         <td> 
           {% if t.profile_pic %}
-          <img src="{% static t.profile_pic.url %}" alt="Profile Pic" height="40px" width="40px" />
+          <img src="{{ t.profile_pic.url }}" alt="Profile Pic" height="40px" width="40px" />
           {% endif %}
         </td>
 
+        <td> {{t.get_email}}</td>
         <td>{{t.mobile}}</td>
         <td>{{t.address}}</td>
+        <td>{{t.birth_date}}</td>
         
         <td><a class="btn btn-primary btn-xs" href="{% url 'update-customer' t.id  %}"><span class="glyphicon glyphicon-edit"></span></a></td>
         <td><a class="btn btn-danger btn-xs" href="{% url 'delete-customer' t.id  %}"><span class="glyphicon glyphicon-trash"></span></a></td>

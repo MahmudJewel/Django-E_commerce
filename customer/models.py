@@ -13,13 +13,15 @@ class Customer(models.Model):
     address = models.CharField(max_length=50, null=True,blank=True)
     mobile = models.CharField(max_length=20,null=True,blank=True)
 
-    def save(self):    #resize image
-        super().save()
+    #******** start Resize Image ***************
+    def save(self, *args, **kwargs):    #*args, **kwargs for solving error
+        super(Customer, self).save(*args, **kwargs)
         img = Image.open(self.profile_pic.path)
         if img.height > 300 or img.width > 300:
             output_size = ( 300, 300)
             img.thumbnail(output_size)
             img.save(self.profile_pic.path)
+    #******** End Resize Image ***************
 
     @property
     def get_name(self):
@@ -27,6 +29,15 @@ class Customer(models.Model):
     @property
     def get_instance(self):
         return self
+
+    @property
+    def get_username(self):
+        return self.user.username
+
+    @property
+    def get_email(self):
+        return self.user.email
+
     def __str__(self):
         return f"{self.user.username}'s Profile"
 

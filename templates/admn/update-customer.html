@@ -39,19 +39,28 @@
 <div>
   <form method="post" autocomplete="off" enctype="multipart/form-data" style="margin-left:200px;margin-right:200px;">
       {% csrf_token %}
+
         <label for="first_name">First Name</label>
         {% render_field userForm.first_name class="form-control" placeholder="First Name" %}
+
         <label for="last_name">Last Name</label>
         {% render_field userForm.last_name class="form-control" placeholder="Last Name" %}
-          <label for="mobile">Mobile</label>
+
+        <label for="username">Username</label>
+        {% render_field userForm.username class="form-control" placeholder="Username" %}
+
+          <label for="email">Email</label>
+        {% render_field userForm.email class="form-control" placeholder="email" %} <br>
+
+        <label for="mobile">Mobile</label>
           {% render_field customerForm.mobile class="form-control" placeholder="Mobile" %}
+
             <label for="address">Address</label>
           {% render_field customerForm.address class="form-control" placeholder="Address" %}
           
-        <label for="username">Username</label>
-        {% render_field userForm.username class="form-control" placeholder="Username" %}
+          <label for="birth date">Birth date</label>
+          {% render_field customerForm.birth_date class="form-control" placeholder="birth date" %}
           
-
         <label for="Profile">Profile Pic</label>
         {% render_field customerForm.profile_pic class="form-control" placeholder="Username" %}
 
