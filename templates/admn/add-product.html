@@ -1,9 +1,10 @@
 {% extends 'admn/adminbase.html' %}
 {% load widget_tweaks %}
-
 {% block content %}
+
+
 <head>
-	<meta charset="utf-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,31 +12,17 @@
     <link href="http://netdna.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-	<style type="text/css">
-		.btnSubmit {
-      border: none;
-      border-radius: 1.5rem;
-      padding: 20px;
-      margin: 20px;
-      cursor: pointer;
-      background: #0062cc;
-      color: #fff;
-    }
-	</style>
+    <style type="text/css"></style>
 </head>
 
-<section style="min-height:720px;">
-	<form method = 'post'>
-		{% csrf_token %}
-		<br><br><br><br>
-		<div style="text-align:center;">
-		<big>Do U want to delete <span style="color:red;">{{customer.get_username}}</span></big>
-		<br><br><br>
+<br><br>
 
+  <div class="container" style="min-height:720px;">
+    <form method="post">
+        {% csrf_token %}
+    {{productForm.as_p}}
+    <button type="submit">submit</button>
+    </form>
+  </div>
 
-		<button type="submit" class="btnSubmit">Yes</button>
-		<a href="/admn/customer-list"  class="btnSubmit">No</a>
-		</div>
-		</form>
-</section>
-{% endblock content %}
+    {% endblock %}

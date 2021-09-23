@@ -29,12 +29,12 @@
 		{% csrf_token %}
 		<br><br><br><br>
 		<div style="text-align:center;">
-		<big>Do U want to delete <span style="color:red;">{{customer.get_username}}</span></big>
+		<big>Do U want to delete <span style="color:red;">{{product.name}}</span></big>
 		<br><br><br>
 
 
 		<button type="submit" class="btnSubmit">Yes</button>
-		<a href="/admn/customer-list"  class="btnSubmit">No</a>
+		<a href="/admn/product-list"  class="btnSubmit">No</a>
 		</div>
 		</form>
 </section>

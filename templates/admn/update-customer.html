@@ -1,75 +1,111 @@
 {% extends 'admn/adminbase.html' %}
 {% load widget_tweaks %}
 {% block content %}
+
 <head>
   <style media="screen">
-    input[type=text], select,input[type=number] ,input[type=password], textarea{
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-  }
+    a:link {
+      text-decoration: none;
+    }
 
-  input[type=submit] {
-    width: 100%;
-    background-color: #4CAF50;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
+    .note {
+      text-align: center;
+      height: 80px;
+      background: -webkit-linear-gradient(left, #0072ff, #8811c5);
+      color: #fff;
+      font-weight: bold;
+      line-height: 80px;
+    }
 
-  input[type=submit]:hover {
-    background-color: #45a049;
-  }
+    .form-content {
+      padding: 5%;
+      border: 1px solid #ced4da;
+      margin-bottom: 2%;
+    }
 
+    .form-control {
+      border-radius: 1.5rem;
+    }
 
+    .btnSubmit {
+      border: none;
+      border-radius: 1.5rem;
+      padding: 1%;
+      width: 20%;
+      cursor: pointer;
+      background: #0062cc;
+      color: #fff;
+    }
+
+    .menu {
+      top: 50px;
+    }
   </style>
 
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head style="min-height: 600px;">
+<br>
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  <div class="container register-form">
+    <div class="form">
+      <div class="note">
+        <p>UPDATE CUSTOMER</p>
+      </div>
+      <div class="form-content">
+        <div class="row">
 
-</head>
-
-<br><br>
-<h3 style="text-align:center;">UPDATE CUSTOMER</h3>
-<div>
-  <form method="post" autocomplete="off" enctype="multipart/form-data" style="margin-left:200px;margin-right:200px;">
-      {% csrf_token %}
-
-        <label for="first_name">First Name</label>
+          <div class="col-md-6">
+            <div class="form-group">
+             <label for="first_name">First Name</label>
         {% render_field userForm.first_name class="form-control" placeholder="First Name" %}
+            </div>
 
-        <label for="last_name">Last Name</label>
+            <div class="form-group">
+               <label for="last_name">Last Name</label>
         {% render_field userForm.last_name class="form-control" placeholder="Last Name" %}
+            </div>
+          </div>
 
-        <label for="username">Username</label>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="username">Username</label>
         {% render_field userForm.username class="form-control" placeholder="Username" %}
-
-          <label for="email">Email</label>
+            </div>
+            <div class="form-group">
+             <label for="email">Email</label>
         {% render_field userForm.email class="form-control" placeholder="email" %} <br>
+            </div>
+          </div>
 
-        <label for="mobile">Mobile</label>
+          <div class="col-md-6">
+            <div class="form-group">
+               <label for="mobile">Mobile</label>
           {% render_field customerForm.mobile class="form-control" placeholder="Mobile" %}
-
-            <label for="address">Address</label>
-          {% render_field customerForm.address class="form-control" placeholder="Address" %}
-          
-          <label for="birth date">Birth date</label>
+            </div>
+            <div class="form-group">
+             <label for="birth date">Birth date</label>
           {% render_field customerForm.birth_date class="form-control" placeholder="birth date" %}
-          
-        <label for="Profile">Profile Pic</label>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
+               <label for="address">Address</label>
+          {% render_field customerForm.address class="form-control" placeholder="Address" %}
+            </div>
+            <div class="form-group">
+             <label for="Profile">Profile Pic</label>
         {% render_field customerForm.profile_pic class="form-control" placeholder="Username" %}
+            </div>
+          </div>
 
-<br><br>
-    <input type="submit" value="Update">
-  </form>
-</div>
-
-
-
-<br><br><br><br><br><br><br><br>
+        </div>
+        <button type="submit" class="btnSubmit">UPDATE CUSTOMER</button>
+      </div>
+    </div>
+  </div>
+</form>
 {% endblock content %}
