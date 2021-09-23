@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'admn',
     'home',
     'customer',
-    'widget_tweaks'
+    'widget_tweaks',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
