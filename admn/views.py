@@ -87,7 +87,7 @@ def admin_product_side_var(request):
 def add_product_view(request):
 	productForm=AFORM.productForm()
 	if request.method=='POST':
-		productForm=AFORM.productForm(request.POST )
+		productForm=AFORM.productForm(request.POST , request.FILES)
 		if productForm.is_valid():
 			productForm.save()
 			return redirect("admin-product")
@@ -107,7 +107,7 @@ def update_product_view(request, pk):
 	product=AMODEL.product.objects.get(id=pk)
 	productForm=AFORM.productForm(instance=product)
 	if request.method== 'POST':
-		productForm=AFORM.productForm(request.POST, instance=product)
+		productForm=AFORM.productForm(request.POST, request.FILES, instance=product)
 		if productForm.is_valid():
 			productForm.save()
 			return redirect('product-list')

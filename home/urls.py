@@ -13,4 +13,6 @@ urlpatterns = [
     path('logout', LogoutView.as_view(template_name='home/logout.html'), name='logout'),
     
     path('afterlogin', views.afterlogin_view, name='afterlogin'),
+
+    path('product/<int:pk>',  views.product_view, name='product')
 ]

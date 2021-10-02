@@ -3,15 +3,19 @@ from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
 from django.contrib import messages
 
-#from customer import forms as CFORM
-#from customer import models as CMODEL
+from admn import forms as AFORM
+from admn import models as AMODEL
 
 # Create your views here.
 
 def home(request):
 	if request.user.is_authenticated:
 		HttpResponseRedirect('afterlogin')
-	return render(request,'home/home.html')
+	products=AMODEL.product.objects.all()
+	context = {
+		'products' : products,
+	}
+	return render(request, 'home/home.html', context)
 
 '''
 def customer_home(request):
@@ -28,4 +32,11 @@ def afterlogin_view(request):
 
 	else:
 		return HttpResponseRedirect('admn/dashboard')
+
+def product_view(request, pk):
+		pd=AMODEL.product.objects.get(id=pk)
+		context={
+			'pd': pd,
+		}
+		return render(request, 'home/product.html', context)
 
