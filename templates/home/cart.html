@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+
+  <style media="screen">
+    a:link {
+      text-decoration: none;
+    }
+
+    h6 {
+      text-align: center;
+    }
+
+    .row {
+      margin: 100px;
+    }
+  </style>
+</head>
+<body>
+	{% include 'home/nav.html' %}
+	<br><br><br><br><br><br>
+
+	<div class="container" style="min-height:720px">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h2 class="panel-title" style="text-align:center; color: #0275d8;">Product List</h2>
+    </div>
+    <table class="table table-hover" id="dev-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>IMAGE</th>
+          <th>DESCRIPTIONS </th>
+          <th>PRICE</th>
+          <th>QUANTITY</th>
+          <th>TOTAL</th>
+        </tr>
+      </thead>
+
+     
+      <tr>
+
+        <td> {{t.name}}</td>
+        <td> 
+          <img src="{{ t.img.url }}" alt="Profile Pic" height="40px" width="40px" />
+        </td>
+         <td> {{t.desc}}</td>
+        <td> {{t.price}}</td>
+        <td>1</td>
+        <td>00</td>
+      </tr>
+    
+    </table>
+  </div>
+</div>
+
+	{% include 'home/footer.html' %}
+</body>
+</html>

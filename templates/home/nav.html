@@ -22,6 +22,16 @@
       font-size: 20px;
       font-family: sans-serif;
     }
+    #cart-total{
+      display: block;
+      text-align: center;
+      color: #fff;
+      background-color: red;
+      width: 20px;
+      height: 25px;
+      border-radius: 50%;
+      font-size: 14px;
+    }
   </style>
 </head>
 
@@ -56,8 +66,12 @@
           <a href="/login" class="btn btn-lg btn-info"> Log In</a>
           {% endif %}
 
-          <a href="/" class="nav-item nav-link"><img src="{% static 'img/cart.png' %}" height="20px" width="25px"></a>
+ 
+          <a href="/cart" class="nav-item nav-link" ><img src="{% static 'img/cart.png' %}" height="20px" width="25px"> </a>
+          <p id="cart-total">0</p>
           
+
+
         </div>
       </div>
     </nav>
@@ -74,6 +88,6 @@
         </div>
 
   </div>
+  <script type="text/javascript" src="{% static 'js/cart.js' %}"></script>
 </body>
-
 </html>

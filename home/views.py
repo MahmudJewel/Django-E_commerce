@@ -40,3 +40,10 @@ def product_view(request, pk):
 		}
 		return render(request, 'home/product.html', context)
 
+def cart_view(request):
+	products=AMODEL.product.objects.get(id=6)
+	context={
+		't' :  products,
+	}
+	return render(request, 'home/cart.html', context)
+
