@@ -3,7 +3,6 @@
 <html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  
 
   <style media="screen">
     a:link {
@@ -40,9 +39,8 @@
         </tr>
       </thead>
 
-     
+     {% for t in products %}
       <tr>
-
         <td> {{t.name}}</td>
         <td> 
           <img src="{{ t.img.url }}" alt="Profile Pic" height="40px" width="40px" />
@@ -52,11 +50,12 @@
         <td>1</td>
         <td>00</td>
       </tr>
-    
+    {% endfor %}
+
     </table>
   </div>
 </div>
 
-	{% include 'home/footer.html' %}
+	{%include 'home/footer.html'%}
 </body>
 </html>

@@ -129,8 +129,12 @@ h1,h2,h3,h4,h5,h6{
 				<h6><strong>{{product.name}}</strong></h6>
 				<hr>
 
-				<button data-product="{{product.id}}" data-action="add" class="btn btn-outline-secondary add-btn update-cart">Add to Cart</button>
-				
+				<form method="post">
+					{% csrf_token %}
+					<input type="text" name="idfromhtml" value="{{product.id}}">
+					<button type="submit" class="btn btn-outline-secondary add-btn update-cart">Add to Cart</button>
+				</form>
+
 				<!--
 				<a class="btn btn-outline-success" href="{% url 'product' product.id  %}">View</a>
 			-->

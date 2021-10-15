@@ -11,7 +11,27 @@ from admn import models as AMODEL
 def home(request):
 	if request.user.is_authenticated:
 		HttpResponseRedirect('afterlogin')
+
 	products=AMODEL.product.objects.all()
+
+	if request.method=='POST':
+		pdid=request.POST.get('idfromhtml')
+		#product=AMODEL.product.objects.get(id=pdid)
+		#print('product: ', product.price)
+		#print('product id= ', pdid)
+		cart = request.session.get('cart')
+		if cart:
+			qntt=cart.get(pdid)
+			if qntt:
+				cart[pdid]=qntt+1
+			else:
+				cart[pdid]=1
+		else:
+			cart={}
+			cart[pdid]=1
+		request.session['cart']=cart
+		print('cart' , request.session['cart'])
+
 	context = {
 		'products' : products,
 	}
@@ -41,9 +61,15 @@ def product_view(request, pk):
 		return render(request, 'home/product.html', context)
 
 def cart_view(request):
-	products=AMODEL.product.objects.get(id=6)
+	cart_item=request.session.get('cart')
+	products=[]
+	if cart_item:
+		for keys in cart_item:
+			product = AMODEL.product.objects.get(id=keys)
+			products.append(product)
+	#products=AMODEL.product.objects.get(id=6)
 	context={
-		't' :  products,
+		'products' :  products,
 	}
-	return render(request, 'home/cart.html', context)
+	return render(request, 'home/cart.html', context) 
 
