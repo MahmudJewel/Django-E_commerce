@@ -16,6 +16,7 @@ def home(request):
 
 	if request.method=='POST':
 		pdid=request.POST.get('idfromhtml')
+		print(f"type of pdid={type(pdid)}")
 		#product=AMODEL.product.objects.get(id=pdid)
 		#print('product: ', product.price)
 		#print('product id= ', pdid)
@@ -58,6 +59,21 @@ def product_view(request, pk):
 		context={
 			'pd': pd,
 		}
+		#print(f'type= {type(pk)}')
+		if request.method=='POST':
+			cart = request.session.get('cart')
+			if cart:
+				pk=str(pk)
+				qntt=cart.get(pk)
+				if qntt:
+					cart[pk]=qntt+1
+				else:
+					cart[pk]=1
+			else:
+				cart={}
+				cart[pk]=1
+			request.session['cart']=cart
+			print(f"pk={pk} + cart= {cart}")
 		return render(request, 'home/product.html', context)
 
 def cart_view(request):

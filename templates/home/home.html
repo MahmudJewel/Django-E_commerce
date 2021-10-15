@@ -121,18 +121,22 @@ h1,h2,h3,h4,h5,h6{
 	<div style="min-height:720px;"  class="container">
 		<div class="row">
 			{% for product in products %}
-		<div class="col-lg-4" >
+		<div class="col-lg-4" id="{{product.id}}">
 			<a href="{% url 'product' product.id  %}">
-			<img class="thumbnail" src="{{ product.img.url }} " >
-		</a>
+				<img class="thumbnail" src="{{ product.img.url }} " >
+			</a>
 			<div class="box-element product"  >
 				<h6><strong>{{product.name}}</strong></h6>
 				<hr>
+				
 
-				<form method="post">
+				<!-- action="/#{{product.id}} is used to return same product after adding to cart -->
+				<form action="/#{{product.id}}" method="post">
 					{% csrf_token %}
-					<input type="text" name="idfromhtml" value="{{product.id}}">
-					<button type="submit" class="btn btn-outline-secondary add-btn update-cart">Add to Cart</button>
+					<input hidden="" type="text" name="idfromhtml" value="{{product.id}}">
+					<button type="submit" class="btn btn-outline-primary add-btn update-cart">Add to Cart</button>
+
+					<button type="submit" class="btn btn-outline-danger add-btn update-cart">Remove from Cart</button>
 				</form>
 
 				<!--

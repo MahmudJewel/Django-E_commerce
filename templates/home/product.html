@@ -37,14 +37,14 @@
 
             <p>Desc: {{ pd.desc }}</p>
 
-            <a href="{{ object.get_add_to_cart_url }}" class="btn btn-primary btn-md my-0 p" >Add to cart
-                <i class="fas fa-shopping-cart ml-1"></i>
-            </a>
+            <form method="post">
+              {% csrf_token %}
+            <button type="submit" class="btn btn-primary btn-md my-0 p" >Add to cart </button>
 
-            {{ object.get_quantity_in_chart }}
-            <a href="{{ object.get_remove_from_cart_url }}" class="btn btn-danger btn-md my-0 p" >Remove From cart
-                <i class="fas fa-trash ml-1"></i>
-            </a>
+            <button type="submit" class="btn btn-danger btn-md my-0 p" >Remove From cart</button>
+            </form>
+
+            
           </div>
           <!--Content-->
 
@@ -59,6 +59,7 @@
     </div>
   </main>
   <!--Main layout-->
+  <br><br><br>
+  {% include 'home/footer.html' %}
 	</body>
-	{% include 'home/footer.html' %}
 </html>
