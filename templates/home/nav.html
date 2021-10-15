@@ -68,7 +68,7 @@
 
  
           <a href="/cart" class="nav-item nav-link" ><img src="{% static 'img/cart.png' %}" height="20px" width="25px"> </a>
-          <p id="cart-total">0</p>
+          <p id="cart-total">{{request.session.cart.keys|length}}</p>
           
 
 
