@@ -1,4 +1,5 @@
 {% load static %}
+{% load cart %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,6 +36,7 @@
           <th>DESCRIPTIONS </th>
           <th>PRICE</th>
           <th>QUANTITY</th>
+          <th>Remove</th>
           <th>TOTAL</th>
         </tr>
       </thead>
@@ -47,8 +49,20 @@
         </td>
          <td> {{t.desc}}</td>
         <td> {{t.price}}</td>
-        <td>1</td>
-        <td>00</td>
+        <td>
+          <div>
+            <form method="post">
+              {% csrf_token %}
+              <input hidden="" type="text" name="tid" value="{{t.id}}">
+              <button type="submit" name="plus" >+</button>
+              <b>{{request|product_amount:t.id}} </b>
+              <button type="submit" name="minus" >-</button>
+            
+          </div>
+        </td>
+        <td><button type="submit" name="rm" >rm</button></td>
+        </form>
+        <td>{{t.price|single_product_price:5}}</td>
       </tr>
     {% endfor %}
 

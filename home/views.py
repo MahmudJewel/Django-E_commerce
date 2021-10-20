@@ -87,13 +87,35 @@ def product_view(request, pk):
 
 		return render(request, 'home/product.html', context)
 
+#Cart page
 def cart_view(request):
 	cart_item=request.session.get('cart')
+	#print(f"cart item {cart_item['4']}")
 	products=[]
 	if cart_item:
 		for keys in cart_item:
 			product = AMODEL.product.objects.get(id=keys)
 			products.append(product)
+
+	if request.method=='POST':
+		tid=request.POST.get('tid')
+		qntt=cart_item[tid]
+		if 'plus' in request.POST:
+			cart_item[tid]=qntt+1
+
+		elif 'minus' in request.POST:
+			if(qntt>1):
+				cart_item[tid]=qntt-1
+			else:
+				pass
+		
+		elif 'rm' in request.POST:
+			remove_from_cart(request, tid)
+			return redirect('cart')
+
+		request.session['cart']=cart_item
+		#print(f"cart {cart_item}")
+
 	#products=AMODEL.product.objects.get(id=6)
 	context={
 		'products' :  products,
