@@ -1,3 +1,4 @@
+{% load cart %}
 <!DOCTYPE html>
 <html>
 	<head>
@@ -39,9 +40,13 @@
 
             <form method="post">
               {% csrf_token %}
-            <button type="submit" class="btn btn-primary btn-md my-0 p" >Add to cart </button>
-
-            <button type="submit" class="btn btn-danger btn-md my-0 p" >Remove From cart</button>
+              
+              <!-- Passing value in filter -->
+              {% if pd|in_cart:request.session.cart %}
+                <button type="submit" name="rmvFromCart" class="btn btn-danger btn-md my-0 p" >Remove From cart</button>
+              {% else %}
+                <button type="submit" name="addToCart" class="btn btn-primary btn-md my-0 p" >Add to cart </button>
+              {% endif %}
             </form>
 
             

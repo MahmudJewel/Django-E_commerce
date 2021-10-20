@@ -135,6 +135,8 @@ h1,h2,h3,h4,h5,h6{
 				<form action="/#{{product.id}}" method="post">
 					{% csrf_token %}
 					<input hidden="" type="text" name="idfromhtml" value="{{product.id}}">
+
+					<!-- Passing value in filter -->
 					{% if product|in_cart:request.session.cart %}
 					<button type="submit" name='rmvFromCart' class="btn btn-outline-danger add-btn update-cart">Remove from Cart</button>
 					{% else %}

@@ -21,6 +21,7 @@ def add_to_cart(request, id):
 
 #Removing from Cart
 def remove_from_cart(request, pk):
+	pk=str(pk)
 	cart = request.session.get('cart')
 	cart.pop(pk)
 	request.session['cart']=cart
@@ -36,6 +37,7 @@ def home(request):
 
 	if request.method=='POST':
 		pdid=request.POST.get('idfromhtml')
+		#print(f"type pdid {type(pdid)}")
 		if 'addToCart' in request.POST:
 			add_to_cart(request, pdid) #Call the function
 			'''
@@ -66,27 +68,23 @@ def afterlogin_view(request):
 		return HttpResponseRedirect('admn/dashboard')
 
 
-#Single product view
+#Single product view, Single product details on single page, adding & removing on cart
 def product_view(request, pk):
 		pd=AMODEL.product.objects.get(id=pk)
 		context={
 			'pd': pd,
 		}
 		#print(f'type= {type(pk)}')
-		if request.method=='':
-			cart = request.session.get('cart')
-			if cart:
-				pk=str(pk)
-				qntt=cart.get(pk)
-				if qntt:
-					cart[pk]=qntt+1
-				else:
-					cart[pk]=1
-			else:
-				cart={}
-				cart[pk]=1
-			request.session['cart']=cart
-			print(f"pk={pk} + cart= {cart}")
+		if request.method=='POST':
+			if 'addToCart' in request.POST:
+				add_to_cart(request, pk)
+
+			elif 'rmvFromCart' in request.POST:
+				remove_from_cart(request, pk)
+				print(f"type {type(pk)}")
+				return redirect('/')
+				# remove_from_cart(request, pk)
+
 		return render(request, 'home/product.html', context)
 
 def cart_view(request):
