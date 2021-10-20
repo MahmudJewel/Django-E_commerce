@@ -8,6 +8,26 @@ from admn import models as AMODEL
 
 # Create your views here.
 
+#Adding item on Cart
+def add_to_cart(request, id):
+	cart = request.session.get('cart')
+	if cart:
+		cart[id]=1
+	else:
+		cart={}
+		cart[id]=1
+	request.session['cart']=cart
+	return 0
+
+#Removing from Cart
+def remove_from_cart(request, pk):
+	cart = request.session.get('cart')
+	cart.pop(pk)
+	request.session['cart']=cart
+	return 0
+
+
+#Home page, adding item, removing item from cart
 def home(request):
 	if request.user.is_authenticated:
 		HttpResponseRedirect('afterlogin')
@@ -16,32 +36,23 @@ def home(request):
 
 	if request.method=='POST':
 		pdid=request.POST.get('idfromhtml')
-		print(f"type of pdid={type(pdid)}")
-		#product=AMODEL.product.objects.get(id=pdid)
-		#print('product: ', product.price)
-		#print('product id= ', pdid)
-		cart = request.session.get('cart')
-		if cart:
+		if 'addToCart' in request.POST:
+			add_to_cart(request, pdid) #Call the function
+			'''
 			qntt=cart.get(pdid)
 			if qntt:
 				cart[pdid]=qntt+1
 			else:
-				cart[pdid]=1
-		else:
-			cart={}
-			cart[pdid]=1
-		request.session['cart']=cart
-		print('cart' , request.session['cart'])
+				cart[pdid]=1 '''
+		elif 'rmvFromCart' in request.POST:
+			pdid=request.POST.get('idfromhtml')
+			remove_from_cart(request, pdid)
 
 	context = {
 		'products' : products,
 	}
 	return render(request, 'home/home.html', context)
 
-'''
-def customer_home(request):
-	return render(request,'home/home.html')
-	'''
 
 def is_customer(user):
     return user.groups.filter(name='CUSTOMER').exists()
@@ -54,13 +65,15 @@ def afterlogin_view(request):
 	else:
 		return HttpResponseRedirect('admn/dashboard')
 
+
+#Single product view
 def product_view(request, pk):
 		pd=AMODEL.product.objects.get(id=pk)
 		context={
 			'pd': pd,
 		}
 		#print(f'type= {type(pk)}')
-		if request.method=='POST':
+		if request.method=='':
 			cart = request.session.get('cart')
 			if cart:
 				pk=str(pk)

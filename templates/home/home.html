@@ -1,4 +1,5 @@
 {% load static %}
+{% load cart %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -128,21 +129,24 @@ h1,h2,h3,h4,h5,h6{
 			<div class="box-element product"  >
 				<h6><strong>{{product.name}}</strong></h6>
 				<hr>
+				<h4 style="display: inline-block; float: right"><strong>tk {{product.price}}</strong></h4>
 				
-
 				<!-- action="/#{{product.id}} is used to return same product after adding to cart -->
 				<form action="/#{{product.id}}" method="post">
 					{% csrf_token %}
 					<input hidden="" type="text" name="idfromhtml" value="{{product.id}}">
-					<button type="submit" class="btn btn-outline-primary add-btn update-cart">Add to Cart</button>
-
-					<button type="submit" class="btn btn-outline-danger add-btn update-cart">Remove from Cart</button>
+					{% if product|in_cart:request.session.cart %}
+					<button type="submit" name='rmvFromCart' class="btn btn-outline-danger add-btn update-cart">Remove from Cart</button>
+					{% else %}
+					<button type="submit" name='addToCart' class="btn btn-outline-primary add-btn update-cart">Add to Cart</button>
+					{% endif %}
 				</form>
 
+				
 				<!--
 				<a class="btn btn-outline-success" href="{% url 'product' product.id  %}">View</a>
 			-->
-				<h4 style="display: inline-block; float: right"><strong>tk {{product.price}}</strong></h4>
+				
 
 
 			</div>
