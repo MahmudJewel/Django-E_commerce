@@ -62,7 +62,7 @@
         </td>
         <td><button type="submit" name="rm" >rm</button></td>
         </form>
-        <td>{{t.price|single_product_price:5}}</td>
+        <td>{% single_product_price request t.price t.id %}</td>
       </tr>
     {% endfor %}
 

@@ -17,8 +17,10 @@ def product_amount(request, id):
 	return cart[id]
 
 
-@register.filter(name='single_product_price')
-def single_product_price(price, id):
-	#cart=session.get('cart')
-	# amount=cart[id]
-	return price*id
+@register.simple_tag
+def single_product_price(request, price, pk):
+	cart=request.session.get('cart')
+	pk=str(pk)
+	amount=cart[pk]
+	#print(f"amount {type(amount)} {amount}")
+	return price*amount
