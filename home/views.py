@@ -82,7 +82,8 @@ def product_view(request, pk):
 			elif 'rmvFromCart' in request.POST:
 				remove_from_cart(request, pk)
 				print(f"type {type(pk)}")
-				return redirect('/')
+				adr='/#'+str(pk) #return to home page same product
+				return redirect(adr)
 				# remove_from_cart(request, pk)
 
 		return render(request, 'home/product.html', context)

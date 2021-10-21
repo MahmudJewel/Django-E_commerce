@@ -5,6 +5,10 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+  <!-- font awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">  
+  <script src="https://kit.fontawesome.com/041e223fec.js" crossorigin="anonymous"></script> 
+
   <style media="screen">
     a:link {
       text-decoration: none;
@@ -26,14 +30,14 @@
 	<div class="container" style="min-height:720px">
   <div class="panel panel-primary">
     <div class="panel-heading">
-      <h2 class="panel-title" style="text-align:center; color: #0275d8;">Product List</h2>
+      <h2 class="panel-title" style="text-align:center; color: #0275d8;">Your Cart</h2>
     </div>
     <table class="table table-hover" id="dev-table">
       <thead>
-        <tr>
-          <th>Name</th>
+        <tr style="text-align:center;">
+          <th style="text-align:left;">Name</th>
           <th>IMAGE</th>
-          <th>DESCRIPTIONS </th>
+          <th style="text-align:left;">DESCRIPTIONS </th>
           <th>PRICE</th>
           <th>QUANTITY</th>
           <th>Remove</th>
@@ -42,34 +46,45 @@
       </thead>
 
      {% for t in products %}
-      <tr>
-        <td> {{t.name}}</td>
+      <tr style="text-align:center;">
+        <td style="text-align:left;"> {{t.name}}</td>
         <td> 
-          <img src="{{ t.img.url }}" alt="Profile Pic" height="40px" width="40px" />
+          <img src="{{ t.img.url }}" alt="Profile Pic" height="70px" width="50px" />
         </td>
-         <td> {{t.desc}}</td>
+         <td style="text-align:left;"> {{t.desc}}</td>
         <td> {{t.price}}</td>
         <td>
           <div>
             <form method="post">
               {% csrf_token %}
               <input hidden="" type="text" name="tid" value="{{t.id}}">
-              <button type="submit" name="plus" >+</button>
+              
+              <button type="submit" name="minus" class="btn btn-secondary" style="margin-right: 10px;"> - </button>
               <b>{{request|product_amount:t.id}} </b>
-              <button type="submit" name="minus" >-</button>
+              <button type="submit" name="plus" class="btn btn-primary" style="margin-left: 10px;"> + </button>
             
           </div>
         </td>
-        <td><button type="submit" name="rm" >rm</button></td>
+        <td><button type="submit" name="rm" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button></td>
         </form>
         <td>{% single_product_price request t.price t.id %}</td>
       </tr>
-    {% endfor %}
+       {% endfor %}
+      
+      <tr style="font-size: 20px;">
+        <td colspan="6" style="text-align:right;"><b>TOTAL</b></td>
+        <td><b>{% total_price request %} tk</b></td>
+      </tr>
 
     </table>
+    <br><br>
+    <div style="text-align:center;" >
+      <a class="btn btn-secondary" href="/" > <== Continue to Shopping</a>
+      <a class="btn btn-success" href="#">Checkout ==> </a>
+    </div>
   </div>
 </div>
-
+  <br><br><br>
 	{%include 'home/footer.html'%}
 </body>
 </html>
