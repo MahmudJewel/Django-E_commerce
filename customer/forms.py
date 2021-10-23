@@ -5,6 +5,7 @@ from flatpickr import DatePickerInput
 from django.contrib.auth.models import User
 from .models import Customer
 
+# first time register form
 class RegisterForm(UserCreationForm):
     #email = forms.EmailField()
     class Meta:
@@ -12,6 +13,7 @@ class RegisterForm(UserCreationForm):
         fields = ["username", "email", "password1", "password2"]
 
 
+ # ********** start Change profile form ***************
 class EditForm(forms.ModelForm):
     #email = forms.EmailField()
     class Meta:
@@ -24,3 +26,19 @@ class customerForm(forms.ModelForm):
     class Meta:
         model = Customer
         fields = ["birth_date", "profile_pic", "address", "mobile"]
+
+# ********** end Change profile form ***************
+
+
+# ********** start shipping address ***************
+# class shippingUserPart1(forms.ModelForm):
+#     class Meta:
+#         model = User
+#         fields = ["first_name", "last_name"]
+
+# class shippingUserPart2(forms.ModelForm):
+#     class Meta:
+#         model = Customer
+#         fields = ["mobile", "address"]
+
+# ********** end shipping address ***************

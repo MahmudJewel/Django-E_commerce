@@ -4,6 +4,10 @@ from django.contrib.auth.models import User
 from django.db.models import signals
 from django.dispatch import receiver
 from PIL import Image
+#import datetime
+
+from admn import models as AMODEL
+
 
 # Create your models here.
 class Customer(models.Model):
@@ -56,3 +60,25 @@ def save_profile(sender, instance, **kwargs):
     print('Customer is saved')
     instance.profile.save()
 '''
+
+#order
+class order(models.Model):
+    product=models.ForeignKey(AMODEL.product, on_delete=models.SET_DEFAULT, default='Deleted')
+    customer=models.ForeignKey(User, on_delete=models.CASCADE)
+    price=models.PositiveIntegerField()
+    qntt=models.PositiveIntegerField(default=1)
+    fullName=models.CharField(max_length=20)
+    mobile=models.CharField(max_length=20)
+    address=models.CharField(max_length=100)
+    orderedDate=models.DateField(default=datetime.now)
+    status=models.BooleanField(default=False)
+
+    def total(self):
+        return self.price * self.qntt
+
+    def saveOrder(self):
+        self.save()
+
+    def __str__(self):
+        return f"{self.fullName}'s order"
+

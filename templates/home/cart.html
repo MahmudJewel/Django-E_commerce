@@ -25,7 +25,6 @@
 </head>
 <body>
 	{% include 'home/nav.html' %}
-	<br><br><br><br><br><br>
 
 	<div class="container" style="min-height:720px">
   <div class="panel panel-primary">
@@ -80,7 +79,11 @@
     <br><br>
     <div style="text-align:center;" >
       <a class="btn btn-secondary" href="/" > <== Continue to Shopping</a>
-      <a class="btn btn-success" href="#">Checkout ==> </a>
+        {% if user.is_authenticated %}
+      <a class="btn btn-success" href="/checkout">Checkout ==> </a>
+      {% else %}
+      <a class="btn btn-success" href="/login">Checkout ==> </a>
+      {% endif %}
     </div>
   </div>
 </div>

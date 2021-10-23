@@ -6,6 +6,9 @@ from django.contrib import messages
 from admn import forms as AFORM
 from admn import models as AMODEL
 
+from customer import forms as CFORM
+from customer import models as CMODEL
+
 # Create your views here.
 
 #Adding item on Cart
@@ -31,6 +34,7 @@ def remove_from_cart(request, pk):
 #Home page, adding item, removing item from cart
 def home(request):
 	if request.user.is_authenticated:
+		#print(f"User = {request.user} ID = {request.user.id}")
 		HttpResponseRedirect('afterlogin')
 
 	products=AMODEL.product.objects.all()
@@ -53,6 +57,7 @@ def home(request):
 	context = {
 		'products' : products,
 	}
+	#print(f"home/cart{request.session['cart']}")
 	return render(request, 'home/home.html', context)
 
 
@@ -123,3 +128,44 @@ def cart_view(request):
 	}
 	return render(request, 'home/cart.html', context) 
 
+# checkout page for giving shipping address
+def checkout_view(request):
+	cart_item=request.session.get('cart')
+	#print(f"cart item {cart_item['4']}")
+	products=[]
+	if cart_item:
+		for keys in cart_item:
+			product = AMODEL.product.objects.get(id=keys)
+			products.append(product)
+
+	# userForm=CFORM.shippingUserPart1(instance = request.user)
+	# customerForm=CFORM.shippingUserPart2(instance=request.user.profile)
+	user=CMODEL.User.objects.get(id=request.user.id)
+	customer=CMODEL.Customer.objects.get(user=user)
+	if request.method=='POST':
+		for p in products:
+			cart_key=str(p.id)
+			fname=request.POST.get('firstName')
+			lname=request.POST.get('lastName')
+			order= CMODEL.order(
+				product = p,
+				customer = user,
+				price = p.price,
+				qntt = cart_item[cart_key],
+				fullName = fname+lname,
+				mobile = request.POST.get('mobile'),
+				address = request.POST.get('address'))
+			order.saveOrder()
+			
+			del request.session['cart']
+			messages.success(request, f"Your order has been placed Successfully")
+			return redirect('/')
+			#print(f'your order {order} ')
+
+
+	context={
+		'products': products,
+		'user': user,
+		'customer' : customer,
+	}
+	return render(request, 'home/checkout.html', context)

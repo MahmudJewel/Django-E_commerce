@@ -38,7 +38,7 @@ def upadate_profile_view(request, pk):
 	user=CMODEL.User.objects.get(id=pk)
 	customer=CMODEL.Customer.objects.get(user=user)
 	#print('customer"s mobile:', customer.mobile, customer.address, customer.birth_date)
-	print('Customer img: ', customer.profile_pic)
+	#print('Customer img: ', customer.profile_pic)
 	if request.method == 'POST':
 		userForm=CFORM.EditForm(request.POST, instance=request.user)
 		customerForm = CFORM.customerForm(request.POST, request.FILES, instance=request.user.profile) #profile is onetoonefield name
