@@ -1,163 +1,60 @@
+{% extends 'home/base.html' %}
 {% load static %}
 {% load cart %}
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<title></title>
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" />
 
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+{% block content %}
+ <div class="container" style="min-height:720px;">
+        <div class="row">
+        	<!-- Category sections at home page-->
+            <div class="col-md-2 text-left">
+            	<br><br>
+                <h5 class="text-primary">CATEGORIES</h5>
+                <a href="#" class="btn btn-outline-success my-1 active" style="width: 100%; text-align: left;">All Product </a>
+                {% for category in categories %}
+            	<a href="#" class="btn btn-outline-success my-1" style="width: 100%; text-align: left;">{{category}} </a>
+                {% endfor %}
+            </div>
+            <!-- Product section at home page-->
+            <div class="col-md-10 ms-auto py-3">
+                <div class="row">
+                  {% for product in products %}
+                    <div class="col mb-lg-2">
+                        <div class="card shadow rounded" style="width: 15rem; height: 27rem;">
+                            <!-- image -->
+                            <a id="{{product.id}}" href="{% url 'product' product.id  %}" class="text-center p-1" style="height: 16rem;">
+                            <img src="{{ product.img.url }} " style="max-width: 90%; max-height: 16rem; text-align: center;" class="card-img-top" alt="...">
+                            </a>
 
-	<style type="text/css">
+                            <!-- card body name(max-3 line) & price(max-oneline) -->
+                            <div class="card-body" style="max-height: 11rem;">
+                              <div style="max-height: 8rem;">
+                                  <p class="card-title" style="height: 4rem;">{{product.name}}</p>
+                              <h5 class="card-text" style="height: 2rem;">tk {{product.price}}</h5>
+                              </div>
 
-		body{
-	background-color: hsl(0, 0%, 98%);
-}
+                              <!-- card button  -->
+                              <form action="/#{{product.id}}" method="post">
+                                {% csrf_token %}
+                                <input hidden="" type="text" name="idfromhtml" value="{{product.id}}">
+                                <!-- Passing value in filter -->
+					                {% if product|in_cart:request.session.cart %}
+                                <button class="btn btn-danger" type='submit' name='rmvFromCart' style="width: 100%;">Remove from Cart</button>
+                                {% else %}
+                                <button class="btn btn-primary" type='submit' name='addToCart' style="width: 100%;">Add to Cart</button>
+                                {% endif %}
+                            
+                            </form>
+                            </div>
 
-h1,h2,h3,h4,h5,h6{
-	color:hsl(0, 0%, 30%);
-}
+                            </div>
+                    </div>
+                    {% endfor %}
 
-.box-element{
-	box-shadow:hsl(0, 0%, 80%) 0 0 16px;
-	background-color: #fff;
-	border-radius: 4px;
-	padding: 10px;
-}
+                          
+                    </div>
+                </div>
+        
+        </div>
+    </div>
 
-.thumbnail{
-	width: 80%;
-	height: 300px;
-	-webkit-box-shadow: -1px -3px 5px -2px rgba(214,214,214,1);
-    -moz-box-shadow: -1px -3px 5px -2px rgba(214,214,214,1);
-    box-shadow: -1px -3px 5px -2px rgba(214,214,214,1);
-    text-align: center;
-    align-items: center;
-    align-content: center;
-}
-
-.product{
-	border-radius: 0 0 4px 4px;
-}
-
-.bg-dark{
-	background-color: #4f868c!important;
-}
-
-#cart-icon{
-	width:25px;
-	display: inline-block;
-	margin-left: 15px;
-}
-
-#cart-total{
-	display: block;
-	text-align: center;
-	color:#fff;
-	background-color: red;
-	width: 20px;
-	height: 25px;
-	border-radius: 50%;
-	font-size: 14px;
-}
-
-.col-lg-4, .col-lg-6, .col-lg-8, .col-lg-12{
-	margin-top: 10px;
-}
-
-.btn{
-	border-radius: 0;
-}
-
-.row-image{
-	width: 100px;
-}
-
-.form-field{
-	width:250px;
-	display: inline-block;
-	padding: 5px;
-}
-
-.cart-row{
-	display: flex;
-    align-items: flex-stretch;
-    padding-bottom: 10px;
-    margin-bottom: 10px;
-    border-bottom: 1px solid #ececec;
-
-}
-
-.quantity{
-	display: inline-block;
-	font-weight: 700;
-	padding-right:10px;
-	
-
-}
-
-.chg-quantity{
-	width: 12px;
-	cursor: pointer;
-	display: block;
-	margin-top: 5px;
-	transition:.1s;
-}
-
-.chg-quantity:hover{
-	opacity: .6;
-}
-
-
-.hidden{
-	display: none!important;
-}
-	</style>
-
-</head>
-<body>
-	{% include 'home/nav.html' %}
-	<br><br><br>
-	<div style="min-height:720px;"  class="container">
-		<div class="row">
-			{% for product in products %}
-		<div class="col-lg-4" id="{{product.id}}">
-			<a href="{% url 'product' product.id  %}">
-				<img class="thumbnail" src="{{ product.img.url }} " >
-			</a>
-			<div class="box-element product"  >
-				<h6><strong>{{product.name}}</strong></h6>
-				<hr>
-				<h4 style="display: inline-block; float: right"><strong>tk {{product.price}}</strong></h4>
-				
-				<!-- action="/#{{product.id}} is used to return same product after adding to cart -->
-				<form action="/#{{product.id}}" method="post">
-					{% csrf_token %}
-					<input hidden="" type="text" name="idfromhtml" value="{{product.id}}">
-
-					<!-- Passing value in filter -->
-					{% if product|in_cart:request.session.cart %}
-					<button type="submit" name='rmvFromCart' class="btn btn-outline-danger add-btn update-cart">Remove from Cart</button>
-					{% else %}
-					<button type="submit" name='addToCart' class="btn btn-outline-primary add-btn update-cart">Add to Cart</button>
-					{% endif %}
-				</form>
-
-				
-				<!--
-				<a class="btn btn-outline-success" href="{% url 'product' product.id  %}">View</a>
-			-->
-				
-
-
-			</div>
-		</div>
-		{% endfor %}
-		</div>
-	</div>
-	{% include 'home/footer.html' %}
-
-	
-</body>
-</html>
+{% endblock content %}

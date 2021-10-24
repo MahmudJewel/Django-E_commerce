@@ -80,5 +80,5 @@ class order(models.Model):
         self.save()
 
     def __str__(self):
-        return f"{self.fullName}'s order"
+        return f"{self.customer.username}'s order"
 

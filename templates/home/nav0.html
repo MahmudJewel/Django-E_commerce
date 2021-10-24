@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <!-- device responsive -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- bootstrap css -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <!-- fontawesome -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+  <style type="text/css">
+    .bs-example {
+      margin: 0px;
+
+    }
+    .bg-dark {
+    background-color: #212529!important;
+}
+    .navbar-brand {
+      font-size: 20px;
+      font-family: sans-serif;
+    }
+    #cart-total{
+      display: block;
+      text-align: center;
+      color: #fff;
+      background-color: red;
+      width: 20px;
+      height: 25px;
+      border-radius: 50%;
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="bs-example">
+    <nav class="navbar navbar-expand-md  navbar-dark fixed-top nav-tabs" style="background-color: #637BAD;">
+    <a style="color: aqua;text-decoration: none; " href="/"><font face = "Comic sans MS" size =" 5"> Shopping Mall </font><br /></a> 
+      <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+        <div class="navbar-nav"></div>
+
+        <div class="navbar-nav">
+          <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-1" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="color: white;">Search</button>
+          </form>
+        </div>
+
+        <div class="navbar-nav">
+           <a style="color: aqua;" href="/" class="nav-item nav-link">Home</a>
+
+           {% if user.is_authenticated %}
+           <a href="/customer/profile/{{user.id}}" class="nav-item nav-link" style="color:black;"> Hello {{user.username}}</a>
+          <a href="/logout" class="btn btn-lg btn-info"> Log out</a>
+
+          {% else %}
+          <a href="/customer/signup" class="nav-item nav-link" style="color:aqua;">Sign up</a>
+          <a href="/login" class="btn btn-lg btn-info"> Log In</a>
+          {% endif %}
+
+ 
+          <a href="/cart" class="nav-item nav-link" ><img src="{% static 'img/cart.png' %}" height="20px" width="25px"> </a>
+          <p id="cart-total">{{request.session.cart.keys|length}}</p>
+          
+
+
+        </div>
+      </div>
+    </nav>
+
+    <div style="text-align: center;">
+          {% if messages %}
+          <br><br><br>
+            {% for msg in messages %}
+              <div class="alert alert-{{msg.tags}}">
+                {{msg}}
+              </div>
+            {% endfor %}
+          {% endif %}
+        </div>
+        <br><br><br><br>
+  </div>
+  <!-- <script type="text/javascript" src="{% static 'js/cart.js' %}"></script> -->
+</body>
+</html>

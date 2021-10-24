@@ -38,7 +38,8 @@ def home(request):
 		HttpResponseRedirect('afterlogin')
 
 	products=AMODEL.product.objects.all()
-
+	categories = AMODEL.product_category.objects.all()
+	
 	if request.method=='POST':
 		pdid=request.POST.get('idfromhtml')
 		#print(f"type pdid {type(pdid)}")
@@ -53,9 +54,10 @@ def home(request):
 		elif 'rmvFromCart' in request.POST:
 			pdid=request.POST.get('idfromhtml')
 			remove_from_cart(request, pdid)
-
+	
 	context = {
 		'products' : products,
+		'categories' : categories,
 	}
 	#print(f"home/cart{request.session['cart']}")
 	return render(request, 'home/home.html', context)
@@ -152,7 +154,7 @@ def checkout_view(request):
 				customer = user,
 				price = p.price,
 				qntt = cart_item[cart_key],
-				fullName = fname+lname,
+				fullName = fname+" "+lname,
 				mobile = request.POST.get('mobile'),
 				address = request.POST.get('address'))
 			order.saveOrder()
@@ -162,10 +164,11 @@ def checkout_view(request):
 			return redirect('/')
 			#print(f'your order {order} ')
 
-
+	
 	context={
 		'products': products,
 		'user': user,
 		'customer' : customer,
+
 	}
 	return render(request, 'home/checkout.html', context)
