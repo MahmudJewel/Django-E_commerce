@@ -7,8 +7,8 @@
                     <h3 class="table-title text-center text-primary">Your Order</h3>
                     <thead>
                         <tr>
-                            <th>DATE</th>
-                            <th>PRODUCT NAME</th>
+                            <th>ORDERED DATE</th>
+                            <th style="text-align:left;" >PRODUCT NAME</th>
                             <th>PRICE</th>
                             <th>QUANTITY</th>
                             <th>TOTAL</th>
@@ -21,7 +21,7 @@
                     	{% for order in orderList %}
                         <tr>
                             <td>{{order.orderedDate}}</td>
-                            <td>{{order.product}}</td>
+                            <td style="text-align:left;" >{{order.product.name}}</td>
                             <td>{{order.price}}</td>
                             <td>{{order.qntt}}</td>
                             <td>{{order.total}}</td>

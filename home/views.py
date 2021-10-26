@@ -40,6 +40,11 @@ def home(request):
 	products=AMODEL.product.objects.all()
 	categories = AMODEL.product_category.objects.all()
 	
+	# Category view at home page
+	if (request.GET.get('category')):
+		products=AMODEL.product.objects.filter(productCategory=request.GET.get('category'))
+	
+	#add or remove functionality at home page
 	if request.method=='POST':
 		pdid=request.POST.get('idfromhtml')
 		#print(f"type pdid {type(pdid)}")
@@ -168,13 +173,9 @@ def checkout_view(request):
 					order.saveOrder()
 				del request.session['cart']
 				messages.success(request, f"Your order has been placed Successfully")
-				return redirect('/')
-			
-				
+				return redirect('/')							
 		else:
-			messages.success(request, f"Please add item to cart and check out.")
-		#print(f'your order {order} ')
-
+			messages.success(request, f"Please add item to cart and check out.")		
 	
 	context={
 		'products': products,
