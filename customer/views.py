@@ -56,3 +56,13 @@ def upadate_profile_view(request, pk):
 	}
 
 	return render(request,'customer/profile.html', context)
+
+	#Order page
+def order_view(request):
+	#orderList = CMODEL.order.objects.all()
+	orderList = CMODEL.order.objects.filter(customer=request.user.id)
+	context = {
+		'orderList' : orderList,
+	}
+	return render(request, 'customer/order.html', context)
+

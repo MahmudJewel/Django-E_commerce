@@ -45,10 +45,10 @@
             <ul class="navbar-nav me-md-5 ms-md-auto mb-2 mb-lg-0">
               {% if user.is_authenticated %}
               <li class="nav-item">
-                <a class="nav-link " href="/customer/profile/{{user.id}}">Hello {{user.username}}</a>
+                <a class="nav-link text-light" href="/customer/profile/{{user.id}}">Hello {{user.username}}</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" style="color: aqua;" href="#">Orders</a>
+                <a class="nav-link" style="color: aqua;" href="/customer/order">Orders</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" style="color: aqua;" href="/logout">Log out</a>
@@ -84,7 +84,7 @@
       {% endfor %}
     {% endif %}
   </div>
-  <br><br><br><br>
+  <br><br><br>
  	{% block content %}
 
 	{% endblock %}

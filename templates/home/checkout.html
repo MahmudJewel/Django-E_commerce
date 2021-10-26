@@ -45,22 +45,22 @@
                 	{% csrf_token %}
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">First Name</span>
-                    <input type="text" name="firstName" class="form-control" value="{{user.first_name}}">
+                    <input required="" type="text" name="firstName" class="form-control" value="{{user.first_name}}">
                   </div>
 
                   <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">Last Name</span>
-                    <input type="text" name="lastName" class="form-control" value="{{user.last_name}}">
+                    <input required="" type="text" name="lastName" class="form-control" value="{{user.last_name}}">
                   </div>
 
                   <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default"> Mobile </span>
-                    <input type="text" name="mobile" class="form-control" value="{{customer.mobile}}">
+                    <input required="" type="text" name="mobile" class="form-control required" value="{{customer.mobile}}">
                   </div>
 
                   <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">Address</span>
-                    <input type="text" name="address" class="form-control" value="{{customer.address}}">
+                    <input required="" type="text" name="address" class="form-control required" value="{{customer.address}}">
                 </div>
                 <br> <br>
                 <div class="text-center">

@@ -82,3 +82,6 @@ class order(models.Model):
     def __str__(self):
         return f"{self.customer.username}'s order"
 
+    def falseStatus(self):
+        if (self.status==False):
+            return 'Pending'

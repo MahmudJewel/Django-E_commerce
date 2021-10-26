@@ -145,24 +145,35 @@ def checkout_view(request):
 	user=CMODEL.User.objects.get(id=request.user.id)
 	customer=CMODEL.Customer.objects.get(user=user)
 	if request.method=='POST':
-		for p in products:
-			cart_key=str(p.id)
-			fname=request.POST.get('firstName')
-			lname=request.POST.get('lastName')
-			order= CMODEL.order(
-				product = p,
-				customer = user,
-				price = p.price,
-				qntt = cart_item[cart_key],
-				fullName = fname+" "+lname,
-				mobile = request.POST.get('mobile'),
-				address = request.POST.get('address'))
-			order.saveOrder()
+		fname=request.POST.get('firstName')
+		lname=request.POST.get('lastName')
+		fullName = fname+" "+lname,
+		mobile = request.POST.get('mobile')
+		address = request.POST.get('address')
+		#print('cart length = ', len(request.session['cart']))
+
+		if(request.session.get('cart')):
+			# order placed when cart has at least 1 item
+			if(len(request.session['cart']) >=1): #cart item check
+				for p in products:
+					cart_key=str(p.id)
+					order= CMODEL.order(
+						product = p,
+						customer = user,
+						price = p.price,
+						qntt = cart_item[cart_key],
+						fullName = fullName,
+						mobile = mobile,
+						address = address)
+					order.saveOrder()
+				del request.session['cart']
+				messages.success(request, f"Your order has been placed Successfully")
+				return redirect('/')
 			
-			del request.session['cart']
-			messages.success(request, f"Your order has been placed Successfully")
-			return redirect('/')
-			#print(f'your order {order} ')
+				
+		else:
+			messages.success(request, f"Please add item to cart and check out.")
+		#print(f'your order {order} ')
 
 	
 	context={

@@ -5,4 +5,6 @@ from customer import views
 urlpatterns = [
     path('signup',views.customerSignup, name='signup'),
     path('profile/<int:pk>', views.upadate_profile_view, name='profile'),
+
+    path('order', views.order_view, name='order'),
 ]

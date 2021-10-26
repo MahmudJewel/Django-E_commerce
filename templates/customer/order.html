@@ -1,0 +1,38 @@
+{% extends 'home/base.html' %}
+{% block content %}
+    <div class="container" style="min-height:720px;">
+        <div class="row">
+            <div class="col-md-12 table-responsive border-primary">
+                <table class="table table-bordered table-striped text-center table-hover">
+                    <h3 class="table-title text-center text-primary">Your Order</h3>
+                    <thead>
+                        <tr>
+                            <th>DATE</th>
+                            <th>PRODUCT NAME</th>
+                            <th>PRICE</th>
+                            <th>QUANTITY</th>
+                            <th>TOTAL</th>
+                            <th>STATUS</th>
+
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                    	{% for order in orderList %}
+                        <tr>
+                            <td>{{order.orderedDate}}</td>
+                            <td>{{order.product}}</td>
+                            <td>{{order.price}}</td>
+                            <td>{{order.qntt}}</td>
+                            <td>{{order.total}}</td>
+                            <td class="text-danger">{{order.falseStatus}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <br> <br>
+       
+    </div>
+{% endblock content %}
