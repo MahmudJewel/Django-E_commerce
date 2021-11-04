@@ -61,6 +61,7 @@ def upadate_profile_view(request, pk):
 def order_view(request):
 	#orderList = CMODEL.order.objects.all()
 	orderList = CMODEL.order.objects.filter(customer=request.user.id)
+	# print(f"order status {orderList[0].status} type={type(orderList[0].status)}")
 	context = {
 		'orderList' : orderList,
 	}

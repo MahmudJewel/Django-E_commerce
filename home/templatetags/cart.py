@@ -42,3 +42,11 @@ def total_price(request):
 			sum=sum+single_product_price(request, product.price, key)
 		
 	return sum
+
+#short Description
+@register.simple_tag
+def short_desc(desc):
+	if len(desc)>30:
+		return desc[0:30]+'...'
+	else:
+		return desc

@@ -1,19 +1,9 @@
-{%load static%}
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
-    {% include "home/nav.html" %}
-    <br><br><br><br><br>
+{% extends 'home/base.html' %}
+{% load static %}
+
+{% block content %}
     <div style="min-height:720px;">
-      <br><br><br>
-      <img src="{% static 'img/logout.png' %}"  style="width:800px; height:100px; padding-left:400px;">
+      <br><br><br><br><br>
+      <img class="rounded mx-auto d-block" src="{% static 'img/logout.png' %}">
   </div>
-
-{% include "home/footer.html" %}
-
-  </body>
-</html>
+{% endblock %}

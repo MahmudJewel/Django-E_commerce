@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+{% extends 'home/base.html' %}
+{% load static %}
+{% load cart %}
 {% load widget_tweaks %}
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>login</title>
-    <style media="screen">
+
+{% block content %}
+<style media="screen">
       body {
     margin: 0;
     padding: 0;
@@ -72,14 +72,11 @@
 .box input[type="submit"]:hover {
     background: #2ecc71
 }
+</style>
 
-
-    </style>
-  </head>
-  <body>
-    {% include "home/nav.html" %}
-    <div class="container" style="min-height:720px;">
+<div class="container" style="min-height:720px;">
     <div class="row">
+        <!-- <div class="col-md-3"></div> -->
         <div class="col-md-6">
             <div class="card">
                 <form class="box" method="post">
@@ -97,9 +94,4 @@
         </div>
     </div>
 </div>
-<br><br><br><br><br><br><br><br><br>
-<br><br><br><br><br><br><br><br><br>
-<br><br><br><br><br>
-{% include "home/footer.html" %}
-  </body>
-</html>
+{% endblock %}

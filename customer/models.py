@@ -63,6 +63,11 @@ def save_profile(sender, instance, **kwargs):
 
 #order
 class order(models.Model):
+    statusList=[('Pending', 'Pending'),
+                ('Processing', 'Processing'),
+                ('Shipped', 'Shipped'),
+                ('Delivered', 'Delivered'),
+                ]
     product=models.ForeignKey(AMODEL.product, on_delete=models.SET_DEFAULT, default='Deleted')
     customer=models.ForeignKey(User, on_delete=models.CASCADE)
     price=models.PositiveIntegerField()
@@ -71,7 +76,7 @@ class order(models.Model):
     mobile=models.CharField(max_length=20)
     address=models.CharField(max_length=100)
     orderedDate=models.DateField(default=datetime.now)
-    status=models.BooleanField(default=False)
+    status=models.CharField(max_length=20, choices=statusList, default='Pending')
 
     def total(self):
         return self.price * self.qntt
@@ -82,6 +87,8 @@ class order(models.Model):
     def __str__(self):
         return f"{self.customer.username}'s order"
 
-    def falseStatus(self):
-        if (self.status==False):
-            return 'Pending'
+    def statusOption(self):
+            if (self.status=='0'):
+                return 'Pending'
+            else:
+                return self.status

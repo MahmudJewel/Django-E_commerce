@@ -25,7 +25,9 @@
                             <td>{{order.price}}</td>
                             <td>{{order.qntt}}</td>
                             <td>{{order.total}}</td>
-                            <td class="text-danger">{{order.falseStatus}}</td>
+                            <div>
+                            <td><span class="badge bg-success">{{order.statusOption}}</span></td>
+                            </div>
                         </tr>
                         {% endfor %}
                     </tbody>
