@@ -1,70 +1,33 @@
+{% extends 'home/base.html' %}
+{% load static %}
 {% load cart %}
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8">
-		<title>Product</title>
-	</head>
-	<body>
-		{% include 'home/nav.html' %}
-		<br><br><br><br><br>
-		<!--Main layout-->
-  <main class="mt-5 pt-4">
-    <div class="container dark-grey-text mt-5">
-
-      <!--Grid row-->
-      <div class="row wow fadeIn">
-
-        <!--Grid column-->
-        <div class="col-md-6 mb-4">
-
-          <img src="{{ pd.img.url }}" class="img-fluid"  height= "350px" width="300px" alt="">
-
+{% load widget_tweaks %}
+{% block content %}
+<br><br>
+<div class="container" style="min-height:720px;">
+        <div class="row">
+            <div class="col-lg-4 ms-auto py-3" > 
+                <img src="{{ pd.img.url }}" alt="not found" style="max-width: 400px; max-height: 500px;">
+             </div>
+            <div class="col-lg-7 ms-auto py-3">
+              <br><br>
+                <h3>Name: {{ pd.name }} </h3>
+                <p>Category: <b>{{pd.productCategory}}</b> </p>
+                <p>Price: <b>{{ pd.price }}</b> tk </p>
+                <form method="post">
+                    {% csrf_token %}
+                    
+                    <!-- Passing value in filter --> 
+                    {% if pd|in_cart:request.session.cart %}
+                      <button type="submit" name="rmvFromCart" class="btn btn-danger btn-md my-0 p" >Remove From cart</button>
+                    {% else %}
+                      <button type="submit" name="addToCart" class="btn btn-primary btn-md my-0 p" >Add to cart </button>
+                    {% endif %}
+                  </form>
+                <hr>
+                <br>
+                <p>{{pd.desc}}</p>
+            </div>
         </div>
-        <!--Grid column-->
-
-        <!--Grid column-->
-        <div class="col-md-6 mb-4">
-
-          <!--Content-->
-          <div class="p-4" style="text-align:center;">
-
-          	
-            <p class="lead"> Price:
-             <span> tk {{ pd.price }}</span>
-            </p>
-
-            <p class="lead font-weight-bold">Name: {{ pd.name }}</p>
-
-            <p>Desc: {{ pd.desc }}</p>
-
-            <form method="post">
-              {% csrf_token %}
-              
-              <!-- Passing value in filter -->
-              {% if pd|in_cart:request.session.cart %}
-                <button type="submit" name="rmvFromCart" class="btn btn-danger btn-md my-0 p" >Remove From cart</button>
-              {% else %}
-                <button type="submit" name="addToCart" class="btn btn-primary btn-md my-0 p" >Add to cart </button>
-              {% endif %}
-            </form>
-
-            
-          </div>
-          <!--Content-->
-
-        </div>
-        <!--Grid column-->
-
-      </div>
-      <!--Grid row-->
-
-      <hr>
-
     </div>
-  </main>
-  <!--Main layout-->
-  <br><br><br>
-  {% include 'home/footer.html' %}
-	</body>
-</html>
+{% endblock %}
