@@ -127,3 +127,20 @@ def delete_product_view(request, pk):
 	}
 	return render(request, 'admn/delete-confirm.html', context)
 #======================= End Admin-Product ===============================
+
+
+#======================= Start Category ===============================
+def category_side_var_view(request):
+	total_category = AMODEL.product_category.objects.all().count()
+	context = {
+		'total_category':total_category,
+	}
+	return render(request, 'admn/product_category.html', context)
+
+def category_list_view(request):
+	categories = AMODEL.product_category.objects.all()
+	context = {
+		'categories' : categories,
+	}
+	return render(request, 'admn/category-list.html', context)
+#======================= End Category ===============================

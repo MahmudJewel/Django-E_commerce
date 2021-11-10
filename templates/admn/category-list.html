@@ -4,6 +4,8 @@
 
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- bootstrap 3 -->
   <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
   <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
   <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
@@ -27,32 +29,23 @@
 <div class="container" style="min-height:720px">
   <div class="panel panel-primary">
     <div class="panel-heading">
-      <h6 class="panel-title">Product List</h6>
+      <h6 class="panel-title">Category List</h6>
     </div>
     <table class="table table-hover" id="dev-table">
       <thead>
         <tr>
-          <th>Name</th>
-          <th>PRICE</th>
-          <th>DESCRIPTIONS </th>
-          <th>IMAGE</th>
+          <th>Serial</th>
+          <th>Category</th>
           <th>Update</th>
           <th>Delete</th>
         </tr>
       </thead>
 
-      {% for t in products %}
+      {% for t in categories %}
       <tr>
 
-        <td> {{t.name}}</td>
-        <td> {{t.price}}</td>
-         <td> {{t.desc}}</td>
-
-        <td> 
-          {% if t.img %}
-          <img src="{{ t.img.url }}" alt="Profile Pic" height="40px" width="40px" />
-          {% endif %}
-        </td>
+        <td> {{t.id}} </td>
+        <td> {{t.categoryName}}</td>
         
         <td><a class="btn btn-primary btn-xs" href="{% url 'update-product' t.id  %}"><span class="glyphicon glyphicon-edit"></span></a></td>
         <td><a class="btn btn-danger btn-xs" href="{% url 'delete-product' t.id  %}"><span class="glyphicon glyphicon-trash"></span></a></td>

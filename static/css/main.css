@@ -1,0 +1,203 @@
+ /* start for base ==> left side bar & upper side bar.  */
+a:link {
+    text-decoration: none;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: "Gill Sans", sans-serif;;
+  }
+
+  header {
+    position: fixed;
+    background: #22242A;
+    padding: 20px;
+    width: 100%;
+    z-index: 1;
+  }
+
+  .left_area h3 {
+    color: orange;
+    margin: 0px;
+    text-transform: uppercase;
+    font-size: 20px;
+    font-weight: 900;
+  }
+
+  .left_area span {
+    color: #19B3D3;
+  }
+
+  .logout_btn {
+    padding: 5px;
+    background: #19B3D3;
+    text-decoration: none;
+    float: right;
+    margin-top: -30px;
+    margin-right: 40px;
+    border-radius: 2px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #fff;
+    transition: 0.5s;
+
+  }
+
+  .logout_btn:hover {
+    background: #0B87A6;
+  }
+
+  .sidebar {
+    background: #2f323a;
+    margin-top: 70px;
+    padding-top: 30px;
+    position: fixed;
+    left: 0;
+    width: 250px;
+    height: 100%;
+    transition: 0.5s;
+    transition-property: left;
+  }
+
+  .sidebar .profile_image {
+    width: 100px;
+    height: 100px;
+    border-radius: 100px;
+    margin-bottom: 10px;
+  }
+
+  .sidebar h4 {
+    color: #ccc;
+    margin-top: 0;
+    margin-bottom: 20px;
+  }
+
+  .sidebar a {
+    color: #fff;
+    display: block;
+    width: 100%;
+    line-height: 60px;
+    text-decoration: none;
+    padding-left: 40px;
+    box-sizing: border-box;
+    transition: 0.5s;
+
+  }
+
+  .sidebar a:hover {
+    background: #19B3D3;
+  }
+
+  .sidebar i {
+    padding-right: 10px;
+  }
+
+  label #sidebar_btn {
+    z-index: 1;
+    color: #fff;
+    position: fixed;
+    cursor: pointer;
+    left: 300px;
+    font-size: 20px;
+    margin: 0px 0px;
+    transition: 0.5s;
+    transition-property: color;
+  }
+
+  label #sidebar_btn:hover {
+    color: #19B3D3;
+  }
+
+  #check:checked~.sidebar {
+    left: -190px;
+  }
+
+  #check:checked~.sidebar a span {
+    display: none;
+  }
+
+  #check:checked~.sidebar a {
+    font-size: 20px;
+    margin-left: 170px;
+    width: 80px;
+  }
+
+  .content {
+    margin-left: 250px;
+    background: url(background.png) no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 100vh;
+    transition: 0.5s;
+  }
+
+  #check:checked~.content {
+    margin-left: 60px;
+  }
+
+  #check {
+    display: none;
+  }
+/* end for base ==> left side bar & upper side bar.  */
+
+
+/* start for cart design ==> midle cart */
+  a:link {
+    text-decoration: none;
+  }
+
+  .order-card {
+    color: rgb(255, 255, 255);
+  }
+
+  .bg-c-blue {
+    background: #04868f;
+  }
+
+  .bg-c-green {
+    background:#4C51BF;
+  }
+
+  .bg-c-yellow {
+    background: #F56565;
+  }
+
+  .bg-c-pink {
+    background: #663a30;
+  }
+
+
+  .card {
+    
+    -webkit-box-shadow: 0 1px 2.94px 0.06px rgba(4, 26, 55, 0.16);
+    box-shadow: 0 1px 2.94px 0.06px rgba(4, 26, 55, 0.16);
+    border: 1px solid black;
+    margin-bottom: 30px;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .card .card-block {
+    padding: 25px;
+  }
+
+  .order-card i {
+    font-size: 26px;
+  }
+
+  .f-left {
+    float: left;
+  }
+
+  .f-right {
+    float: right;
+  }
+  header {
+  left: 0px;
+  right: 0px;
+}
+/* end for cart design ==> midle cart */
+
+
+
