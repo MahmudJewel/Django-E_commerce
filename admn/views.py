@@ -143,4 +143,18 @@ def category_list_view(request):
 		'categories' : categories,
 	}
 	return render(request, 'admn/category-list.html', context)
+
+def add_category_view(request):
+	categoryForm=AFORM.categoryForm()
+	if request.method == 'POST':
+		categoryForm = AFORM.categoryForm(request.POST, request.FILES)
+		if categoryForm.is_valid():
+			categoryForm.save()
+			return redirect('product-category')
+	context={
+		'categoryForm':categoryForm,
+	}
+	return render(request, 'admn/add-category.html', context)
+
+
 #======================= End Category ===============================

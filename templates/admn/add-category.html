@@ -3,14 +3,8 @@
 {% block content %}
 {% load static %}
 <head>
-    <!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-  <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}"> -->
-
-  <style type="text/css">
-    a:link {
+	<style type="text/css">
+		a:link {
       text-decoration: none;
     }
 
@@ -46,12 +40,8 @@
     .menu {
       top: 50px;
     }
-  </style>
-
-</head >
-
-<br>
-
+	</style>
+</head>
 <div style="min-height: 600px;">
 <form method="post" enctype="multipart/form-data">
   {% csrf_token %}
@@ -67,22 +57,7 @@
           <div class="col-md-6" >
             <div class="form-group">
              <label for="">Name</label>
-             {% render_field productForm.name class="form-control" placeholder="Name" %}
-            </div>
-
-             <div class="form-group">
-              <label for="">Price</label>
-        {% render_field productForm.price class="form-control" placeholder="Price" %}
-            </div>
-
-            <div class="form-group">
-               <label >Descriptions</label>
-          {% render_field productForm.desc class="form-control" placeholder="Descriptions" %}
-            </div>
-
-            <div class="form-group" >
-               <label for="">Image</label>
-          {% render_field productForm.img class="form-control" %}
+             {% render_field categoryForm.categoryName class="form-control" placeholder="Name" %}
             </div>
             <button type="submit" class="btnSubmit">ADD PRODUCT</button>
           </div>  
@@ -94,4 +69,4 @@
   </div>
 </form>
 </div>
-{% endblock content %}
+{% endblock %}
