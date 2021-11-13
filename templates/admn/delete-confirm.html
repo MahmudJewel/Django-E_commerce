@@ -29,12 +29,21 @@
 		{% csrf_token %}
 		<br><br><br><br>
 		<div style="text-align:center;">
+		{% if product %}
 		<big>Do U want to delete <span style="color:red;">{{product.name}}</span></big>
+
+		{% elif category %}
+		<big>Do U want to delete <span style="color:red;">{{category.categoryName}}</span></big>
+		{% endif %}
 		<br><br><br>
 
 
 		<button type="submit" class="btnSubmit">Yes</button>
-		<a href="/admn/product-list"  class="btnSubmit">No</a>
+		<a href="{{request.META.HTTP_REFERER}}" class="btnSubmit">Go back</a>
+
+		<!-- <a href="/admn/product-list"  class="btnSubmit">No</a>
+		<a href="/admn/category-list"  class="btnSubmit">No</a> -->
+
 		</div>
 		</form>
 </section>

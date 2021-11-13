@@ -156,5 +156,27 @@ def add_category_view(request):
 	}
 	return render(request, 'admn/add-category.html', context)
 
+def update_category_view(request, pk):
+	category=AMODEL.product_category.objects.get(id=pk)
+	categoryForm=AFORM.categoryForm(instance=category)
+	if request.method== 'POST':
+		categoryForm=AFORM.categoryForm(request.POST, request.FILES, instance=category)
+		if categoryForm.is_valid():
+			categoryForm.save()
+			return redirect('category-list')
+	context={
+		'categoryForm' : categoryForm,
+	}
+	return render(request, "admn/update-category.html", context)
 
+def delete_category_view(request, pk):
+	category=AMODEL.product_category.objects.get(id=pk)
+	if request.method=='POST':
+		category=AMODEL.product_category.objects.get(id=pk)
+		category.delete()
+		return redirect('category-list')
+	context={
+			'category':category,
+	}
+	return render(request, 'admn/delete-confirm.html', context)
 #======================= End Category ===============================

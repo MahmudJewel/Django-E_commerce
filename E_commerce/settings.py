@@ -69,6 +69,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
+                # for back button
+                # 'django.core.context_processors.request' # moved in  'django.template.context_processors
             ],
         },
     },
