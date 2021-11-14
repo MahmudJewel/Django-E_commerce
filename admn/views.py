@@ -12,8 +12,8 @@ def dashboard_view(request):
 	context={
     'total_customer':CMODEL.Customer.objects.all().count(),
     'total_product':AMODEL.product.objects.all().count(),
-    #'total_course':models.Course.objects.all().count(),
-    #'total_question':models.Question.objects.all().count(),
+    'total_categories':AMODEL.product_category.objects.all().count(),
+    'total_orders':CMODEL.order.objects.all().count(),
     }
 	return render(request, 'admn/admin_dashboard.html', context)
 

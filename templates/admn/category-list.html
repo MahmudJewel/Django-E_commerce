@@ -44,7 +44,7 @@
       {% for t in categories %}
       <tr>
 
-        <td> {{t.id}} </td>
+        <td> {{forloop.counter}} </td>
         <td> {{t.categoryName}}</td>
         
         <td><a class="btn btn-primary btn-xs" href="{% url 'update-category' t.id  %}"><span class="glyphicon glyphicon-edit"></span></a></td>
