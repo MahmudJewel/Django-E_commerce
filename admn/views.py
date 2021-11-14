@@ -180,3 +180,19 @@ def delete_category_view(request, pk):
 	}
 	return render(request, 'admn/delete-confirm.html', context)
 #======================= End Category ===============================
+
+#======================= Start order summery ===============================
+def order_dashboard_side_var_view(request):
+	total_orders = CMODEL.order.objects.all().count()
+	context = {
+		'total_orders':total_orders
+	}
+	return render(request, 'admn/order_dashboard.html', context)
+
+def order_list_view(request):
+	orders = CMODEL.order.objects.all()
+	context = {
+		'orders':orders,
+	}
+	return render(request, 'admn/order-list.html', context)
+#======================= End order summery ===============================

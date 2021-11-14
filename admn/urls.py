@@ -22,4 +22,8 @@ urlpatterns = [
     path('update-category/<int:pk>', views.update_category_view, name='update-category'),
     path('delete-category/<int:pk>',views.delete_category_view, name='delete-category'),
 
+    path('order-dashboard', views.order_dashboard_side_var_view, name='order-dashboard'),
+    path('order-list', views.order_list_view, name='order-list'),
+
+
 ]
