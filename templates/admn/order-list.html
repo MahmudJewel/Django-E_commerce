@@ -30,12 +30,12 @@
                 {% for order in orders %}
                     <tbody>
                         <tr>
-                            <td style="text-align: left;">1</td>
+                            <td style="text-align: left;">{{forloop.counter}}</td>
                             <td style="text-align: left;" >{{order.orderedDate}}</td>
                             <td style="text-align: left;" >{{order.product}}</td>
                             <td>{{order.customer}}</td>
                             <td>{{order.status}}</td>
-                            <td> <a href="#"><i class="fas fa-bars"></i></a> </td>
+                            <td> <a href="{% url 'order-view' order.id %}"><i class="fas fa-bars"></i></a> </td>
                         </tr>
                        
                     </tbody>

@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
+from django.contrib import messages
 
 from customer import models as CMODEL
 from customer import forms as CFORM
@@ -13,7 +14,7 @@ def dashboard_view(request):
     'total_customer':CMODEL.Customer.objects.all().count(),
     'total_product':AMODEL.product.objects.all().count(),
     'total_categories':AMODEL.product_category.objects.all().count(),
-    'total_orders':CMODEL.order.objects.all().count(),
+    'total_orders':CMODEL.order.objects.all().exclude(status='Delivered').count(),
     }
 	return render(request, 'admn/admin_dashboard.html', context)
 
@@ -182,17 +183,79 @@ def delete_category_view(request, pk):
 #======================= End Category ===============================
 
 #======================= Start order summery ===============================
+# order dashboard
 def order_dashboard_side_var_view(request):
-	total_orders = CMODEL.order.objects.all().count()
+	total_orders = CMODEL.order.objects.all().exclude(status='Delivered').count()
+	pending_order = CMODEL.order.objects.all().filter(status='Pending').count()
+	processing_order = CMODEL.order.objects.all().filter(status='Processing').count()
+	shipped_order = CMODEL.order.objects.all().filter(status='Shipped').count()
+	delivered_order = CMODEL.order.objects.all().filter(status='Delivered').count()
 	context = {
-		'total_orders':total_orders
+		'total_orders':total_orders,
+		'pending_order': pending_order,
+		'processing_order': processing_order,
+		'shipped_order': shipped_order,
+		'delivered_order' : delivered_order,
 	}
 	return render(request, 'admn/order_dashboard.html', context)
 
-def order_list_view(request):
-	orders = CMODEL.order.objects.all()
+# total order view
+def total_order_list_view(request):
+	orders = CMODEL.order.objects.all().exclude(status='Delivered')
 	context = {
 		'orders':orders,
 	}
 	return render(request, 'admn/order-list.html', context)
+
+# Single order view
+def single_order_view(request, pk):
+	single_order = CMODEL.order.objects.get(id=pk)
+	status = CFORM.orderForm(instance=single_order)
+	if request.method == 'POST':
+		status = CFORM.orderForm(request.POST, instance=single_order)
+		if status.is_valid():
+			status.save()
+			messages.success(request, "Status updated!!!")
+			urll='/admn/order-view/'+str(pk)
+			return redirect(urll)
+	context = {
+		'single_order': single_order,
+		'status':status,
+	}
+	return render(request,'admn/single-order-view.html', context)
+
+# pending order view
+def pending_order_list_view(request):
+	orders = CMODEL.order.objects.all().filter(status='Pending')
+	context = {
+		'orders':orders,
+	}
+	return render(request, 'admn/order-list.html', context)
+
+# processing order view
+def processing_order_list_view(request):
+	orders = CMODEL.order.objects.all().filter(status='Processing')
+	context = {
+		'orders':orders,
+	}
+	return render(request, 'admn/order-list.html', context)
+
+# shipped order view
+def shipped_order_list_view(request):
+	orders = CMODEL.order.objects.all().filter(status='Shipped')
+	context = {
+		'orders':orders,
+	}
+	return render(request, 'admn/order-list.html', context)
+
+# delivered order view
+def delivered_order_list_view(request):
+	orders = CMODEL.order.objects.all().filter(status='Delivered')
+	context = {
+		'orders':orders,
+	}
+	return render(request, 'admn/order-list.html', context)
+
+
+
 #======================= End order summery ===============================

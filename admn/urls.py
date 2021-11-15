@@ -23,7 +23,11 @@ urlpatterns = [
     path('delete-category/<int:pk>',views.delete_category_view, name='delete-category'),
 
     path('order-dashboard', views.order_dashboard_side_var_view, name='order-dashboard'),
-    path('order-list', views.order_list_view, name='order-list'),
-
+    path('total-order-list', views.total_order_list_view, name='total-order-list'),
+    path('order-view/<int:pk>', views.single_order_view, name='order-view'),
+    path('pending-order-list', views.pending_order_list_view, name='pending-order-list'),
+    path('processing-order-list', views.processing_order_list_view, name='processing-order-list'),
+    path('shipped-order-list', views.shipped_order_list_view, name='shipped-order-list'),
+    path('delivered-order-list', views.delivered_order_list_view, name='delivered-order-list'),
 
 ]

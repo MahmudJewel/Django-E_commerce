@@ -3,7 +3,7 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from flatpickr import DatePickerInput
 
 from django.contrib.auth.models import User
-from .models import Customer
+from .models import Customer, order
 
 # first time register form
 class RegisterForm(UserCreationForm):
@@ -42,3 +42,12 @@ class customerForm(forms.ModelForm):
 #         fields = ["mobile", "address"]
 
 # ********** end shipping address ***************
+
+# ********** start order form ***************
+class orderForm(forms.ModelForm):
+    class Meta(object):
+        model = order
+        fields = ['status']
+            
+# ********** end order form *****************
+

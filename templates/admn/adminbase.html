@@ -49,13 +49,11 @@
     </center>
 
     <a href="/admn/dashboard"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a>
-    <a href="/admn/admin-customer"><i class="fas fa-chalkboard-teacher"></i><span>Customer</span></a>
-    <a href="/admn/admin-product"><i class="fas fa-user-graduate"></i><span>Products</span></a>
-    <a href="/admn/order-dashboard"><i class="fas fa-user-graduate"></i><span>Orders</span></a>
-    <a href="/admn/product-category"><i class="fas fa-book"></i><span>Category</span></a>
-    <a href="/admin-question"><i class="fas fa-question-circle"></i><span>Pending Orders</span></a>
-    
-
+    <a href="/admn/admin-customer"><i class="fas fa-user"></i><span>Customer</span></a>
+    <a href="/admn/admin-product"><i class="fab fa-product-hunt"></i><span>Products</span></a>
+    <a href="/admn/order-dashboard"><i class="fab fa-first-order-alt"></i><span>Orders</span></a>
+    <a href="/admn/product-category"><i class="fas fa-bacon"></i><span>Category</span></a>
+    <a href="/admn/pending-order-list"><i class="fas fa-question-circle"></i><span>Pending Orders</span></a>
 
   </div>
   <!--sidebar end-->
@@ -63,7 +61,17 @@
 
   <!--content start-->
   <div class="content">
-    <br><br><br><br><br>
+    <br><br><br><br>
+    <!-- alert message -->
+    <div>
+          {% if messages %}
+            {% for msg in messages %}
+              <div class="alert alert-{{msg.tags}} text-center">
+                {{msg}}
+              </div>
+            {% endfor %}
+          {% endif %}
+  </div>
     {% block content %}
 
     {% endblock content %}
