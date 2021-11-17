@@ -58,8 +58,15 @@
         <p>UPDATE PRODUCT</p>
       </div>
       <div class="form-content">
-        <div class="row">
 
+        <div class="col">
+            <div class="form-group d-flex justify-content-center">
+             <label for="first_name" class="mx-3">Category</label>
+        {% render_field productForm.productCategory class="p-2" placeholder="Name" %}
+            </div>
+          </div>
+
+        <div class="row">
           <div class="col-md-6">
             <div class="form-group">
              <label for="first_name">Name</label>

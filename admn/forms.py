@@ -4,7 +4,7 @@ from admn import models
 class productForm(forms.ModelForm):
 	class Meta:
 		model=models.product
-		fields=["name", "price", "desc", "img"]
+		fields=["productCategory", "name", "price", "desc", "img"]
 
 class categoryForm(forms.ModelForm):
 	class Meta:

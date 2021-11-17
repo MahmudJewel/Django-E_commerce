@@ -13,7 +13,7 @@ class product(models.Model):
 	productCategory=models.ForeignKey(product_category, on_delete=models.SET_NULL, null=True, blank=True )
 	name =models.CharField(max_length=50)
 	price = models.PositiveIntegerField()
-	desc =models.CharField(max_length=400)
+	desc =models.TextField()
 	img =models.ImageField(default="product/default.png", upload_to="product/", null=True, blank=True)
 
 	def __str__(self):

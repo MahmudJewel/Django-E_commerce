@@ -66,6 +66,12 @@
 
           <div class="col-md-6" >
             <div class="form-group">
+            <div class="form-group">
+             <label for="">Category</label>
+             {% render_field productForm.productCategory class="form-control" placeholder="category" %}
+            </div>
+
+            <div class="form-group">
              <label for="">Name</label>
              {% render_field productForm.name class="form-control" placeholder="Name" %}
             </div>
