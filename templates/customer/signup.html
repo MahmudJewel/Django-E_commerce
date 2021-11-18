@@ -1,5 +1,3 @@
-
-
 {% extends 'home/base.html' %}
 {% load static %}
 {% load cart %}
@@ -91,42 +89,43 @@
         }
         </style>
 <body style="background-color: #dee9ff;">
-<div class="registration-form">
-            <form method="POST" autocomplete="off" enctype="multipart/form-data" class="border border-primary">
-              {% csrf_token %}
-                <div class="form-icon">
-                    <span><i class="fas fa-user-plus"></i></span>
-                </div>
+  <div class="registration-form">
+    <form method="POST" autocomplete="off" enctype="multipart/form-data" class="border border-primary">
+      {% csrf_token %}
+      <div class="form-icon">
+        <span><i class="fas fa-user-plus"></i></span>
+      </div>
+      {% for field in RegisterForm %}
+        <p>
+          <!-- level & textarea -->
+          {{ field.label_tag }}<br>
+          <div class="form-group">
+            {% render_field field|attr:'required:true'  class="form-control item" %}
+          </div>
+          <!-- help text or suggestions -->
+          {% if field.help_text %}
+            <small style="color: grey">{{ field.help_text }}</small>
+          {% endif %}
 
-                <div class="form-group">
-                  {% render_field RegisterForm.username|attr:'required:true'  class="form-control item" placeholder="Username" %}
-                </div>
-
-                <div class="form-group">
-                  {% render_field RegisterForm.email class="form-control item" placeholder="Email" %}
-                </div>
-
-                <div class="form-group">
-                  {% render_field RegisterForm.password1|attr:'required:true'  class="form-control item" placeholder="Password" %}
-                </div>
-
-                <div class="form-group">
-                  {% render_field RegisterForm.password2|attr:'required:true'  class="form-control item" placeholder="Password comfirmation" %}
-                </div>
-
-                <div class="form-group text-center">
-                    <button type="submit" class="btn btn-block create-account">Create Account</button>
-                </div>
-            
-            <div class="social-media">
-                <h5>Sign up with social media</h5>
-                <div class="social-icons">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-google-plus-g"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                </div>
-            </div>
-            </form>
-        </div>        
+          <!-- Error message -->
+          {% for error in field.errors %}
+            <p style="color: red">{{ error }}</p>
+          {% endfor %}
+        </p>
+      {% endfor %}
+      <div class="form-group text-center">
+        <button type="submit" class="btn btn-block create-account">Create Account</button>
+      </div>
+      <br>
+      <div class="social-media">
+        <h5>Sign up with social media</h5>
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-google-plus-g"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+        </div>
+      </div>
+    </form>
+  </div>
 </body>
 {% endblock %}

@@ -4,94 +4,118 @@
 {% load widget_tweaks %}
 
 {% block content %}
-<style media="screen">
-      body {
-    margin: 0;
-    padding: 0;
-    font-family: sans-serif;
-    background: linear-gradient(to right,#00b38f,#00cc00)
-}
+<style type="text/css">
+        .registration-form{
+        padding: 50px 0;
+        }
+        .registration-form form{
+        background-color: #fff;
+        max-width: 600px;
+        margin: auto;
+        padding: 50px 70px;
+        border-radius: 30px;
+        box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.075);
+        }
+        .registration-form .form-icon{
+        text-align: center;
+        background-color: #5891ff;
+        border-radius: 50%;
+        font-size: 40px;
+        color: white;
+        width: 100px;
+        height: 100px;
+        margin: auto;
+        margin-bottom: 50px;
+        line-height: 100px;
+        }
+        .registration-form .item{
+        border-radius: 20px;
+        margin-bottom: 25px;
+        padding: 10px 20px;
+        }
+        .registration-form .create-account{
+        border-radius: 30px;
+        padding: 10px 20px;
+        font-size: 18px;
+        font-weight: bold;
+        background-color: #5791ff;
+        border: none;
+        color: white;
+        margin-top: 20px;
+        }
+        .registration-form .social-media{
+        max-width: 600px;
+        background-color: #fff;
+        margin: auto;
+        padding: 35px 0;
+        text-align: center;
+        border-bottom-left-radius: 30px;
+        border-bottom-right-radius: 30px;
+        color: #9fadca;
+        border-top: 1px solid #dee9ff;
+        box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.075);
+        }
+        .registration-form .social-icons{
+        margin-top: 30px;
+        margin-bottom: 16px;
+        }
+        .registration-form .social-icons a{
+        font-size: 23px;
+        margin: 0 3px;
+        color: #5691ff;
+        border: 1px solid;
+        border-radius: 50%;
+        width: 45px;
+        display: inline-block;
+        height: 45px;
+        text-align: center;
+        background-color: #fff;
+        line-height: 45px;
+        }
+        .registration-form .social-icons a:hover{
+        text-decoration: none;
+        opacity: 0.6;
+        }
+        @media (max-width: 576px) {
+        .registration-form form{
+        padding: 50px 20px;
+        }
+        .registration-form .form-icon{
+        width: 70px;
+        height: 70px;
+        font-size: 30px;
+        line-height: 70px;
+        }
+        }
+        </style>
 
-.box {
-    width: 500px;
-    padding: 40px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    background: #2c406d;
+<body style="background-color: #dee9ff;">
+  <div class="registration-form" style="min-height:720px;">
+    <form method="POST" autocomplete="off" enctype="multipart/form-data" class="border border-primary">
+      {% csrf_token %}
+      <div class="text-center">
+        <h1>Login</h1>
+        <p class="text-muted"> Please enter your login and password!</p>
+      </div>
+      <!-- error message -->
+        {% if form.errors %}
+            <p style="color:red;">username or password not correct</p>
+        {% endif %}
 
-    text-align: center;
-    transition: 0.25s;
-    margin-top: 100px;
-    border-radius: 5%;
-}
+      {% for field in form %}
+        <p>
+          <!-- level & textarea -->
+          {{ field.label_tag }}<br>
+          <div class="form-group">
+            {% render_field field|attr:'required:true'  class="form-control item" %}
+          </div>
 
-.box input[type="text"],
-.box input[type="password"] {
-    border: 0;
-    background: none;
-    display: block;
-    margin: 20px auto;
-    text-align: center;
-    border: 2px solid #3498db;
-    padding: 10px 10px;
-    width: 250px;
-    outline: none;
-    color: white;
-    border-radius: 24px;
-    transition: 0.25s
-}
-
-.box h1 {
-    color: white;
-    text-transform: uppercase;
-    font-weight: 500
-}
-
-.box input[type="text"]:focus,
-.box input[type="password"]:focus {
-    width: 300px;
-    border-color: #2ecc71
-}
-
-.box input[type="submit"] {
-    border: 0;
-    background: none;
-    display: block;
-    margin: 20px auto;
-    text-align: center;
-    border: 2px solid #2ecc71;
-    padding: 14px 40px;
-    outline: none;
-    color: white;
-    border-radius: 24px;
-    transition: 0.25s;
-    cursor: pointer
-}
-
-.box input[type="submit"]:hover {
-    background: #2ecc71
-}
-</style>
-
-<div class="container" style="min-height:720px;">
-    <div class="row">
-        <!-- <div class="col-md-3"></div> -->
-        <div class="col-md-6">
-            <div class="card">
-                <form class="box" method="post">
-                    {% csrf_token %}
-                    <h1>Login</h1>
-                    <p class="text-muted"> Please enter your login and password!</p>
-
-                     {% render_field form.username class="form-control" placeholder="Username" %}
-                     {% render_field form.password class="form-control" placeholder="Password" %}
-
-                     <input type="submit" name="" value="Login">
-
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
+        </p>
+      {% endfor %}
+      <div class="form-group text-center">
+        <button type="submit" class="btn btn-block create-account">Login</button>
+      </div>
+    </form>
+  </div>
+</body>
 {% endblock %}

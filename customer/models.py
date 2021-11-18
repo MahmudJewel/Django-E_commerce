@@ -14,7 +14,7 @@ class Customer(models.Model):
     user=models.OneToOneField(User,related_name='profile', on_delete=models.CASCADE)
     birth_date = models.DateField(default=datetime.now)
     profile_pic= models.ImageField(default='profile_pic/customer.png', upload_to='profile_pic/Customer/', null=True, blank=True)
-    address = models.CharField(max_length=50, null=True,blank=True)
+    address = models.TextField(null=True,blank=True)
     mobile = models.CharField(max_length=20,null=True,blank=True)
 
     #******** start Resize Image ***************
