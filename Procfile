@@ -1,1 +1,1 @@
-web: gunicorn foldername.wsgi
+﻿web: gunicorn E_commerce.wsgi
