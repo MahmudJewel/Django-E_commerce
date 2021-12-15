@@ -44,6 +44,12 @@ INSTALLED_APPS = [
     'customer',
     'widget_tweaks',
     'crispy_forms',
+    
+    # for active link  
+    'active_link',
+
+    # rich text  
+    'tinymce',
 ]
 
 MIDDLEWARE = [

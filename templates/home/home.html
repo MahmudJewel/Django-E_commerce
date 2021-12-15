@@ -1,6 +1,7 @@
 {% extends 'home/base.html' %}
 {% load static %}
 {% load cart %}
+{% load active_link_tags %}
 
 {% block content %}
  <div class="container" style="min-height:720px;">
@@ -13,7 +14,8 @@
                 <a href="/" class="btn btn-outline-success my-1" style="width: 100%; text-align: left;">All Products </a>
                 
                 <!-- Here href="/?category={{category.id}}" generates the category link -->
-                {% for category in categories %}                
+                {% for category in categories %}
+                              
             	<a href="/?category={{category.id}}" class="btn btn-outline-success my-1" style="width: 100%; text-align: left;">{{category}} </a>               
                 {% endfor %}
 

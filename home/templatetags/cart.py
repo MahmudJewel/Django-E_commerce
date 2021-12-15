@@ -3,7 +3,7 @@ from admn import models as AMODEL
 
 register = template.Library()
 
-#Check the prouct is on cart or not.Base of this, add or remove button set
+#Check the product is on cart or not.Base of this, add or remove button set
 @register.filter(name='in_cart')
 def in_cart(product, cart_item):
 	for i in cart_item:
