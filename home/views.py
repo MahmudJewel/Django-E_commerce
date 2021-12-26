@@ -13,13 +13,14 @@ from customer import models as CMODEL
 
 # search button functionality  
 def search_view(request):
-	if request.method == 'POST':
-		search = request.POST.get('search')
-		# print(f"search : {type(search)}")
-		# print(f"search : {search}")
-		searchItem = AMODEL.product.objects.filter(name__contains = search)
-		# print(f"search item : {searchItem}")
-	return render(request, 'home/search.html',{'searchItem':searchItem})
+	if request.method == 'GET':
+		search = request.GET['search']
+		if search is not None:
+			# print(f"search : {type(search)}")
+			# print(f"search : {search}")
+			searchItem = AMODEL.product.objects.filter(name__contains = search)
+			# print(f"search item : {searchItem}")
+		return render(request, 'home/search.html',{'searchItem':searchItem, 'search':search})
 
 #Adding item on Cart
 def add_to_cart(request, id):

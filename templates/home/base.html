@@ -44,9 +44,9 @@
           <div class="collapse navbar-collapse " id="navbarTogglerDemo02">
            
             <!-- Search button  -->
-            <form class="d-flex mx-md-5" action="/search" method="post">
+            <form class="d-flex mx-md-5" action="/search" method="get">
               {% csrf_token %}
-                <input class="form-control me-2" name="search" type="search" placeholder="Search" aria-label="Search">
+                <input class="form-control me-2" name="search" type="search" placeholder="Search" aria-label="Search" value="{{search}}">
                 <button class="btn btn-outline-light px-4" type="submit">Search</button>
               </form>
 
