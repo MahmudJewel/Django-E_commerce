@@ -236,6 +236,14 @@ a:link {
     .menu {
       top: 50px;
     }
-
+/* start navbar  */
+#navbarTogglerDemo02 ul li a:hover,
+#navbarTogglerDemo02 ul li .active{
+  background: white;
+  color: red;
+  padding: 0 5px;
+  border-radius: 25px;
+}
+/* end navbar  */
 
 

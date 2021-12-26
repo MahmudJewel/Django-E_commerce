@@ -14,6 +14,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://kit.fontawesome.com/041e223fec.js" crossorigin="anonymous"></script>
 
+    <!-- external css  -->
+    <link rel="stylesheet" href="{% static 'css/main.css' %}" />
+
     <!-- Custom css -->
     <style type="text/css">
       /*Showing cart amount on navbar*/
@@ -54,21 +57,21 @@
                 <a class="nav-link text-light" href="/customer/profile/{{user.id}}">Hello {{user.username}}</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" style="color: aqua;" href="/customer/order">Orders</a>
+                <a class="nav-link {% if '/customer/order' in request.path %} active {% endif %}" style="color: aqua;" href="/customer/order">Orders</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" style="color: aqua;" href="/logout">Log out</a>
+                <a class="nav-link {% if '/logout' in request.path %} active {% endif %}" style="color: aqua;" href="/logout">Log out</a>
               </li>
               {% else %}
               <li class="nav-item">
-                <a class="nav-link" style="color: aqua;" href="/customer/signup">Sign up</a>
+                <a class="nav-link {% if '/customer/signup' in request.path %} active {% endif %}" style="color: aqua;" href="/customer/signup">Sign up</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" style="color: aqua;" href="/login">Log In</a>
+                <a class="nav-link {% if '/login' in request.path %} active {% endif %}" style="color: aqua;" href="/login">Log In</a>
               </li>
               {% endif %}
               <li class="nav-item">
-                <a class="nav-link" href="/cart"><img src="{% static 'img/cart.png' %}" height="20px" width="25px"></a>
+                <a class="nav-link {% if '/cart' in request.path %} active {% endif %}" href="/cart"><img src="{% static 'img/cart.png' %}" height="20px" width="25px"></a>
             </li>  
             <p id="cart-total">{{request.session.cart.keys|length}}</p>           
 

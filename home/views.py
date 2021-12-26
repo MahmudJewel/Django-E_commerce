@@ -18,7 +18,7 @@ def search_view(request):
 		# print(f"search : {type(search)}")
 		# print(f"search : {search}")
 		searchItem = AMODEL.product.objects.filter(name__contains = search)
-		print(f"search item : {searchItem}")
+		# print(f"search item : {searchItem}")
 	return render(request, 'home/search.html',{'searchItem':searchItem})
 
 #Adding item on Cart
