@@ -11,6 +11,16 @@ from customer import models as CMODEL
 
 # Create your views here.
 
+# search button functionality  
+def search_view(request):
+	if request.method == 'POST':
+		search = request.POST.get('search')
+		# print(f"search : {type(search)}")
+		# print(f"search : {search}")
+		searchItem = AMODEL.product.objects.filter(name__contains = search)
+		print(f"search item : {searchItem}")
+	return render(request, 'home/search.html',{'searchItem':searchItem})
+
 #Adding item on Cart
 def add_to_cart(request, id):
 	cart = request.session.get('cart')
