@@ -91,6 +91,19 @@
 
           <!-- right side -->
           <ul class="navbar-nav me-md-5 ms-md-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a
+                class="
+                  nav-link
+                  {% if request.path == '/' %}
+                  active
+                  {% endif %}
+                "
+                style="color: aqua"
+                href="/"
+                >Home</a
+              >
+            </li>
             {% if user.is_authenticated %}
             <li class="nav-item">
               <a
