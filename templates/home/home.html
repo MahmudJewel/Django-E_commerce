@@ -8,14 +8,15 @@
         <div class="row">
 
         	<!-- Category sections at home page-->
-            <div class="col-md-2 text-left">
+            <div class="col-md-2 text-left" id="subIndex">
             	<br><br>
                 <h5 class="text-primary">CATEGORIES</h5>
-                <a href="/" class="btn btn-outline-success my-1" style="width: 100%; text-align: left;">All Products </a>
+                <!-- <a href="/" class="abc btn btn-outline-success my-1 " style="width: 100%; text-align: left;">All Products </a> -->
+                <a href="/" class="abc btn btn-outline-success my-1 active " style="width: 100%; text-align: left;">All Products </a>
                 
                 <!-- Here href="/?category={{category.id}}" generates the category link -->
                 {% for category in categories %}
-                              
+                
             	<a href="/?category={{category.id}}" class="btn btn-outline-success my-1" style="width: 100%; text-align: left;">{{category}} </a>               
                 {% endfor %}
 
@@ -62,6 +63,8 @@
                 </div>
         
         </div>
+         <!-- external js  -->
+     <script src="{% static 'js/Active.js' %}" ></script>
     </div>
 
 {% endblock content %}
