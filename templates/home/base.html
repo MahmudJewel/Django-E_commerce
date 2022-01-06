@@ -50,6 +50,19 @@
         border-radius: 50%;
         font-size: 14px;
       }
+      /* ******************** start footer **************************** */
+.footerHeader {
+  padding: 0px 0px 0px 0px;
+  background-color: #212529;
+  margin: 0px;
+}
+.textColor {
+  color: blanchedalmond;
+}
+/* .activestatus {
+  background: white;
+} */
+/* ******************** end footer **************************** */
     </style>
   </head>
   <body>
@@ -203,44 +216,65 @@
 
     <!-- Footer -->
     <br /><br /><br />
-    <footer
-      style="padding: 0px 0px 0px 0px; background-color: #212529; margin: 0px"
-    >
+    <footer class="footerHeader">
       <br /><br />
-      <ul class="nav justify-content-center">
-        <li class="nav-item dropdown">
-          <a
-            style="color: blanchedalmond"
-            class="nav-link dropdown-toggle"
-            href="#"
-            id="navbarDropdown"
-            role="button"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
-          >
-            Copyright &copy: tech villain
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+      <div class="container">
+        <div class="row text-center textColor">
+          <p>Copyright &copy: tech villain</p>
+        </div>
+        <br />
+
+        <div class="row text-center">
+          <div class="col">
             <a
-              class="dropdown-item"
+              class="m-3"
               target="_blank"
-              href="https://www.facebook.com/TechVillain.007/"
+              href="http://mahmudjewel.herokuapp.com"
             >
-              facebook</a
-            >
-            <div class="dropdown-divider"></div>
+              <i class="fas fa-user-circle fa-2x"></i>
+            </a>
+
             <a
-              class="dropdown-item"
+              class="m-3"
+              target="_blank"
+              href="https://www.facebook.com/TechVillain.007"
+            >
+              <i class="fab fa-facebook fa-2x"></i>
+            </a>
+
+            <a
+              class="m-3"
               target="_blank"
               href="https://www.youtube.com/channel/UCJCdq7lWqB7M5b16UatoTEw"
             >
-              Youtube</a
+              <i class="fab fa-youtube fa-2x"></i>
+            </a>
+
+            <a
+              class="m-3"
+              target="_blank"
+              href="https://www.linkedin.com/in/mahmudjewel"
             >
+              <i class="fab fa-linkedin fa-2x"></i>
+            </a>
+            <a
+              class="m-3"
+              target="_blank"
+              href="https://github.com/MahmudJewel"
+            >
+              <i class="fab fa-github fa-2x"></i>
+            </a>
+            <a
+              class="m-3"
+              target="_blank"
+              href="https://www.hackerrank.com/DJ_cse"
+            >
+              <i class="fab fa-hackerrank fa-2x"></i>
+            </a>
           </div>
-        </li>
-      </ul>
-      <br /><br /><br /><br /><br /><br />
+        </div>
+        <br /><br /><br /><br /><br /><br />
+      </div>
     </footer>
     <!-- bootstrap JS -->
     <script
