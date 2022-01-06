@@ -63,6 +63,49 @@
                 </div>
         
         </div>
+<!-- for paginations -->
+<div class="container">
+    <br><br>
+    <div class="row">
+      <div class="col-md-6 text-muted">
+        Showing {{products.start_index }} to {{products.end_index }} out of
+        {{total_products}}
+      </div>
+      <div class="col-md-6 text" style="display: flex; justify-content: end">
+        {% if products.has_other_pages %}
+        <div class="btn-group me-2" role="group" aria-label="First group">
+          {% if products.has_previous %}
+          <button type="button" class="btn btn-outline-primary">
+            <a href="?page={{ products.previous_page_number }}">&laquo;</a>
+          </button>
+          {% else %}
+          <button type="button" class="btn btn-outline-primary disabled">
+            <span>&laquo;</span>
+          </button>
+          {% endif %} {% for i in products.paginator.page_range %} 
+          {% if products.number == i %}
+          <button type="button" class="btn btn-outline-primary active">
+            {{ i }}<span class="sr-only">(current)</span>
+          </button>
+          {% else %}
+          <button type="button" class="btn btn-outline-primary">
+            <a href="?page={{ i }}" class="p-2">{{ i }}</a>
+          </button>
+          {% endif %} {% endfor %} {% if products.has_next %}
+          <button type="button" class="btn btn-outline-primary">
+            <a href="?page={{ products.next_page_number }}">&raquo;</a>
+          </button>
+          {% else %}
+          <button type="button" class="btn btn-outline-primary disabled">
+            <span>&raquo;</span>
+          </button>
+          {% endif %}
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  
          <!-- external js  -->
      <script src="{% static 'js/Active.js' %}" ></script>
     </div>

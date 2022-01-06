@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
 from django.contrib import messages
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from admn import forms as AFORM
 from admn import models as AMODEL
@@ -49,6 +50,7 @@ def home(request):
 		HttpResponseRedirect('afterlogin')
 
 	products=AMODEL.product.objects.all()
+	total_products = products.count() # for pagination
 	categories = AMODEL.product_category.objects.all()
 	
 	# Category view at home page
@@ -69,11 +71,21 @@ def home(request):
 				cart[pdid]=1 '''
 		elif 'rmvFromCart' in request.POST:
 			pdid=request.POST.get('idfromhtml')
-			remove_from_cart(request, pdid)
+			remove_from_cart(request, pdid) 
+	# for Paginator 
+	page = request.GET.get('page', 1)
+	paginator = Paginator(products, 10)  #Two objects in each page.
+	try:
+		products = paginator.page(page)
+	except PageNotAnInteger:
+		products = paginator.page(1)
+	except EmptyPage:
+		products = paginator.page(paginator.num_pages)
 	
 	context = {
 		'products' : products,
 		'categories' : categories,
+  		'total_products': total_products,
 	}
 	#print(f"home/cart{request.session['cart']}")
 	return render(request, 'home/home.html', context)
