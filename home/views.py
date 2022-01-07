@@ -23,7 +23,7 @@ def search_view(request):
 			total_searchItem = searchItem.count()
    			# for Paginator 
 			page = request.GET.get('page', 1)
-			paginator = Paginator(searchItem, 10)  #Two objects in each page.
+			paginator = Paginator(searchItem, 12)  #12 objects in each page.
 			try:
 				searchItem = paginator.page(page)
 			except PageNotAnInteger:
@@ -90,7 +90,7 @@ def home(request):
 			remove_from_cart(request, pdid) 
 	# for Paginator 
 	page = request.GET.get('page', 1)
-	paginator = Paginator(products, 10)  #Two objects in each page.
+	paginator = Paginator(products, 12)  #12 objects in each page.
 	try:
 		products = paginator.page(page)
 	except PageNotAnInteger:

@@ -1,3 +1,4 @@
+<!-- single product view  -->
 {% extends 'home/base.html' %}
 {% load static %}
 {% load cart %}
@@ -10,7 +11,7 @@
                 <img src="{{ pd.img.url }}" alt="not found" style="max-width: 400px; max-height: 500px;">
              </div>
             <div class="col-lg-7 ms-auto py-3">
-              <br><br>
+              
                 <h3>Name: {{ pd.name }} </h3>
                 <p>Category: <b>{{pd.productCategory}}</b> </p>
                 <p>Price: <b>{{ pd.price }}</b> tk </p>
