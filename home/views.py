@@ -20,8 +20,23 @@ def search_view(request):
 			# print(f"search : {type(search)}")
 			# print(f"search : {search}")
 			searchItem = AMODEL.product.objects.filter(name__contains = search)
+			total_searchItem = searchItem.count()
+   			# for Paginator 
+			page = request.GET.get('page', 1)
+			paginator = Paginator(searchItem, 10)  #Two objects in each page.
+			try:
+				searchItem = paginator.page(page)
+			except PageNotAnInteger:
+				searchItem = paginator.page(1)
+			except EmptyPage:
+				searchItem = paginator.page(paginator.num_pages)
 			# print(f"search item : {searchItem}")
-		return render(request, 'home/search.html',{'searchItem':searchItem, 'search':search})
+		context={
+			'searchItem':searchItem,
+			'search':search,
+			'total_searchItem':total_searchItem,
+		}
+		return render(request, 'home/search.html',context)
 
 #Adding item on Cart
 def add_to_cart(request, id):
@@ -56,6 +71,7 @@ def home(request):
 	# Category view at home page
 	if (request.GET.get('category')):
 		products=AMODEL.product.objects.filter(productCategory=request.GET.get('category'))
+		total_products = products.count() # for pagination
 	
 	#add or remove functionality at home page
 	if request.method=='POST':

@@ -52,5 +52,46 @@
                 </div>
         
         </div>
+        <!-- for paginations -->
+
+    <br><br>
+    <div class="row">
+      <div class="col-md-6 text-muted">
+        Showing {{searchItem.start_index }} to {{searchItem.end_index }} out of
+        {{total_searchItem}}
+      </div>
+      <div class="col-md-6 text" style="display: flex; justify-content: end">
+        {% if searchItem.has_other_pages %}
+        <div class="btn-group me-2" role="group" aria-label="First group">
+          {% if searchItem.has_previous %}
+          <button type="button" class="btn btn-outline-primary">
+            <a href="?page={{ searchItem.previous_page_number }}">&laquo;</a>
+          </button>
+          {% else %}
+          <button type="button" class="btn btn-outline-primary disabled">
+            <span>&laquo;</span>
+          </button>
+          {% endif %} {% for i in searchItem.paginator.page_range %} 
+          {% if searchItem.number == i %}
+          <button type="button" class="btn btn-outline-primary active">
+            {{ i }}<span class="sr-only">(current)</span>
+          </button>
+          {% else %}
+          <button type="button" class="btn btn-outline-primary">
+            <a href="?page={{ i }}" class="p-2">{{ i }}</a>
+          </button>
+          {% endif %} {% endfor %} {% if searchItem.has_next %}
+          <button type="button" class="btn btn-outline-primary">
+            <a href="?page={{ searchItem.next_page_number }}">&raquo;</a>
+          </button>
+          {% else %}
+          <button type="button" class="btn btn-outline-primary disabled">
+            <span>&raquo;</span>
+          </button>
+          {% endif %}
+        </div>
+        {% endif %}
+      </div>
+    </div>
     </div>
 {% endblock %}
