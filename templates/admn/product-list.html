@@ -46,7 +46,7 @@
 
         <td> {{t.name}}</td>
         <td> {{t.price}}</td>
-         <td> {{t.desc}}</td>
+         <td> {{t.desc|safe}}</td>
 
         <td> 
           {% if t.img %}
