@@ -18,13 +18,15 @@ console.log("Hello!!!, js connected");
 //       });
 //   }
 // Add active class to the current button (highlight it)
-var hd = document.getElementById("subIndex");
-var btnss = hd.getElementsByClassName("btn");
-for (var i = 0; i < btnss.length; i++) {
+let hd = document.getElementById("subIndex");
+let btnss = hd.getElementsByClassName("btn");
+console.log(btnss)
+for (let i = 0; i < btnss.length; i++) {
   btnss[i].addEventListener("click", function () {
-    var current = document.getElementsByClassName("active");
+    let current = document.getElementsByClassName("active");
     if (current.length>0){
         current[0].className = current[0].className.replace(" active", "");
+        // console.log(current[0])
     }
     // current[0].className = current[0].className.replace(" active", "");
     this.className += " active";

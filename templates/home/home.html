@@ -16,8 +16,7 @@
                 
                 <!-- Here href="/?category={{category.id}}" generates the category link -->
                 {% for category in categories %}
-                
-            	<a href="/?category={{category.id}}" class="btn btn-outline-success my-1" style="width: 100%; text-align: left;">{{category}} </a>               
+            	<a href="/?category={{category.id}}" class="btn btn-outline-success my-1 {% if category.id in request.get_full_path %} active {% endif %}" style="width: 100%; text-align: left;">{{category}} </a>               
                 {% endfor %}
 
             </div>

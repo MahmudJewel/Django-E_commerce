@@ -194,6 +194,7 @@ def checkout_view(request):
 		fullName = fname+" "+lname,
 		mobile = request.POST.get('mobile')
 		address = request.POST.get('address')
+		print(f"New address is {address}")
 		#print('cart length = ', len(request.session['cart']))
 
 		if(request.session.get('cart')):
