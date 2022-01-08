@@ -24,6 +24,11 @@
             <!-- Product section at home page-->
             <div class="col-md-10 ms-auto py-3">
                 <div class="row">
+                  <!-- for showing category on top page  -->
+                  {% if cat %}
+                  <h3 class="text-center text-muted">Category: <span class="text-success">{{filter_cat}}</span></h3>
+                  <br> <br><br>
+                  {% endif %}
                   {% for product in products %}
                     <div class="col mb-2 d-flex justify-content-center">
                         <div class="card shadow rounded" style="width: 15rem; height: 27rem;">

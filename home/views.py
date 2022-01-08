@@ -68,9 +68,13 @@ def home(request):
 	total_products = products.count() # for pagination
 	categories = AMODEL.product_category.objects.all()
 	
+	filter_cat = ''
 	# Category view at home page
 	if (request.GET.get('category')):
 		products=AMODEL.product.objects.filter(productCategory=request.GET.get('category'))
+		# single category for showing category 
+		filter_cat = AMODEL.product_category.objects.get(id=request.GET.get('category'))
+		# print(f"category for single : {filter_cat}")
 		total_products = products.count() # for pagination
 	
 	#add or remove functionality at home page
@@ -98,10 +102,13 @@ def home(request):
 	except EmptyPage:
 		products = paginator.page(paginator.num_pages)
 	
+	cat = request.GET.get('category')
 	context = {
 		'products' : products,
 		'categories' : categories,
   		'total_products': total_products,
+		'cat': cat,
+		'filter_cat': filter_cat,
 	}
 	#print(f"home/cart{request.session['cart']}")
 	return render(request, 'home/home.html', context)
