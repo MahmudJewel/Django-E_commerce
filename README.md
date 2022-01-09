@@ -16,11 +16,12 @@ Every page includes navebar & footer.
 
 ## Home page
 Home page shows product category & products. It has a paginations of 12 products.
-!![home page](https://github.com/MahmudJewel/E_commerce/blob/Development/screenshot/1-home.png)
+!![home page](https://github.com/MahmudJewel/E_commerce-frontend/blob/main/screenshot%20of%20django%20project/1-home.png)
 
+## Single product view
+After clicking the product image, it will show the product’s descriptions.
 
-
-
+![Single product view](https://github.com/MahmudJewel/E_commerce-frontend/blob/main/screenshot%20of%20django%20project/2-single_product2.png)
 
 
 
