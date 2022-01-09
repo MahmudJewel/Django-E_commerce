@@ -1,5 +1,7 @@
 ﻿## Licence
-This web app is developed by : Jewel Mahmud under licence of ‘tech villain’ youtube channel
+This web app is developed by : [Jewel Mahmud](https://mahmudjewel.herokuapp.com/
+) under licence of [tech villain](https://www.youtube.com/channel/UCJCdq7lWqB7M5b16UatoTEw) youtube channel.
+
 Start date of developing: Aug-2021
 ## Tools
 ### Back-end
