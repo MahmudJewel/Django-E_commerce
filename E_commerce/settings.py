@@ -52,7 +52,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     
     # for active link  
-    'active_link',
+    # 'active_link',
 
     # rich text  
     'tinymce',

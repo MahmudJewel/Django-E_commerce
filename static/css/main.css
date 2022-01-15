@@ -1,5 +1,66 @@
+ /* start responsive left index ==> Zig zag */
+.burger {
+  margin: 5px;
+  display: none;
+  border-style: solid;
+  border-color: green;
+  border-radius: 5px;
+  width: 35px;
+}
+.burger div {
+  height: 2px;
+  width: 20px;
+  background: white;
+  margin: 5px;
+  transition: all 0.3s ease;
+  /* border-style: dotted; */
+  /* border-color: cadetblue; */
+}
+
+@media screen and (max-width: 992px) {
+  .burger {
+    display: block;
+  }
+
+  .nav_right {
+    position: absolute;
+    /* margin-top: 5px; */
+    right: 0px;
+    /* display: flex;
+  flex-direction: column;
+  justify-content: space-around; */
+    min-height: 100vh;
+    width: 50%;
+    /* background: #006666; */
+    margin-right: 0;
+    /* transform: translateX(100%); */
+    transform: scale(0);
+    transition: transform 0.5s linear;
+    z-index: 1; /*for under & upper layer  */
+  }
+  /* for layout 0*/
+  .nav_active {
+    transform: translateX(-95%);
+  }
+
+  .toggle .lin1 {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+
+  .toggle .lin2 {
+    opacity: 0;
+  }
+
+  .toggle .lin3 {
+    transform: rotate(-45deg) translate(5px, -5px);
+  }
+}
+/* end responsive left index ==> Zig zag */
+
  /* start for base ==> left side bar & upper side bar.  */
-a:link {
+
+ /* start for base ==> left side bar & upper side bar.  */
+/* a:link {
     text-decoration: none;
   }
 
@@ -138,12 +199,12 @@ a:link {
 
   #check {
     display: none;
-  }
+  } */
 /* end for base ==> left side bar & upper side bar.  */
 
 
 /* start for cart design ==> midle cart */
-  a:link {
+  /* a:link {
     text-decoration: none;
   }
 
@@ -196,11 +257,11 @@ a:link {
   header {
   left: 0px;
   right: 0px;
-}
+} */
 /* end for cart design ==> midle cart */
 
 /*Admin Sections ==> add-product/ category /....*/
-a:link {
+/* a:link {
       text-decoration: none;
     }
 
@@ -235,15 +296,15 @@ a:link {
 
     .menu {
       top: 50px;
-    }
+    } */
 /* start navbar  */
-#navbarTogglerDemo02 ul li a:hover,
+/* #navbarTogglerDemo02 ul li a:hover,
 #navbarTogglerDemo02 ul li .active{
   background: white;
   color: red;
   padding: 0 5px;
   border-radius: 25px;
-}
+} */
 /* end navbar  */
 
 

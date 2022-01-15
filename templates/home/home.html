@@ -1,14 +1,23 @@
 {% extends 'home/base.html' %}
 {% load static %}
 {% load cart %}
-{% load active_link_tags %}
 
 {% block content %}
  <div class="container" style="min-height:720px;">
+        <!-- for responsive zig-zag  -->
+  <div>
+    <div class="burger fixed-top mt-3 ms-3">
+      <div class="lin1"></div>
+      <div class="lin2"></div>
+      <div class="lin3"></div>
+    </div>
+  </div>
+  
         <div class="row">
 
         	<!-- Category sections at home page-->
-            <div class="col-md-2 text-left" id="subIndex">
+            <div class="col-md-2 text-left nav_right bb" id="subIndex"
+            style="background: white;">
             	<br><br>
                 <h5 class="text-primary">CATEGORIES</h5>
                 <!-- <a href="/" class="abc btn btn-outline-success my-1 " style="width: 100%; text-align: left;">All Products </a> -->
