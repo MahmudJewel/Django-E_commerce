@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import messages
-
+from django.contrib.auth.decorators import login_required, user_passes_test
 from customer import models as CMODEL
 from customer import forms as CFORM
 
@@ -9,6 +9,7 @@ from admn import models as AMODEL
 from admn import forms as AFORM	
 # Create your views here.
 
+@user_passes_test(lambda u: u.is_superuser, login_url='login')
 def dashboard_view(request):
 	context={
     'total_customer':CMODEL.Customer.objects.all().count(),
@@ -19,6 +20,7 @@ def dashboard_view(request):
 	return render(request, 'admn/admin_dashboard.html', context)
 
 #======================= Start Admin-Customer ===============================
+@user_passes_test(lambda u: u.is_superuser, login_url='login')
 def admin_customer_side_var(request):
 	context={
 		'total_customer':CMODEL.Customer.objects.all().count(),
@@ -26,7 +28,7 @@ def admin_customer_side_var(request):
 	return render(request, 'admn/admin-customer-side.html',context)
 
 
-
+@user_passes_test(lambda u: u.is_superuser, login_url='login')
 def customer_list_view(request):
 	customers=CMODEL.Customer.objects.all()
 	context={
@@ -34,7 +36,7 @@ def customer_list_view(request):
 	}
 	return render(request, 'admn/customer-list.html',context)
 
-
+@user_passes_test(lambda u: u.is_superuser, login_url='login')
 def update_customer_view(request, pk):
 	#user=CMODEL.User.objects.get(id=pk)
 	customer=CMODEL.Customer.objects.get(id=pk)
@@ -60,7 +62,7 @@ def update_customer_view(request, pk):
 	return render(request, 'admn/update-customer.html',context)
 
 
-
+@user_passes_test(lambda u: u.is_superuser, login_url='login')
 def delete_customer_view(request,  pk):
 	customer = CMODEL.Customer.objects.get(id=pk)
 	print(f" customer's name : {customer.mobile}")
@@ -78,6 +80,7 @@ def delete_customer_view(request,  pk):
 
 
 #======================= Start Admin-Product ===============================
+@user_passes_test(lambda u: u.is_superuser, login_url='login')
 def admin_product_side_var(request):
 	total_product=AMODEL.product.objects.all().count()
 	context={
@@ -85,6 +88,7 @@ def admin_product_side_var(request):
 	}
 	return render(request, "admn/admin-product-side.html", context)
 
+@user_passes_test(lambda u: u.is_superuser, login_url='login')
 def add_product_view(request):
 	productForm=AFORM.productForm()
 	if request.method=='POST':
@@ -97,6 +101,7 @@ def add_product_view(request):
 	}
 	return render(request, "admn/add-product.html",context)
 
+@user_passes_test(lambda u: u.is_superuser, login_url='login')
 def product_list_view(request):
 	products=AMODEL.product.objects.all()
 	context={
@@ -104,6 +109,7 @@ def product_list_view(request):
 	}
 	return render(request, 'admn/product-list.html',context)
 
+@user_passes_test(lambda u: u.is_superuser, login_url='login')
 def update_product_view(request, pk):
 	product=AMODEL.product.objects.get(id=pk)
 	productForm=AFORM.productForm(instance=product)
@@ -117,6 +123,7 @@ def update_product_view(request, pk):
 	}
 	return render(request, "admn/update-product.html", context)
 
+@user_passes_test(lambda u: u.is_superuser, login_url='login')
 def delete_product_view(request, pk):
 	product=AMODEL.product.objects.get(id=pk)
 	if request.method=='POST':
@@ -131,6 +138,7 @@ def delete_product_view(request, pk):
 
 
 #======================= Start Category ===============================
+@user_passes_test(lambda u: u.is_superuser, login_url='login')
 def category_side_var_view(request):
 	total_category = AMODEL.product_category.objects.all().count()
 	context = {
@@ -138,6 +146,7 @@ def category_side_var_view(request):
 	}
 	return render(request, 'admn/product_category.html', context)
 
+@user_passes_test(lambda u: u.is_superuser, login_url='login')
 def category_list_view(request):
 	categories = AMODEL.product_category.objects.all()
 	context = {
@@ -145,6 +154,7 @@ def category_list_view(request):
 	}
 	return render(request, 'admn/category-list.html', context)
 
+@user_passes_test(lambda u: u.is_superuser, login_url='login')
 def add_category_view(request):
 	categoryForm=AFORM.categoryForm()
 	if request.method == 'POST':
@@ -157,6 +167,7 @@ def add_category_view(request):
 	}
 	return render(request, 'admn/add-category.html', context)
 
+@user_passes_test(lambda u: u.is_superuser, login_url='login')
 def update_category_view(request, pk):
 	category=AMODEL.product_category.objects.get(id=pk)
 	categoryForm=AFORM.categoryForm(instance=category)
@@ -170,6 +181,7 @@ def update_category_view(request, pk):
 	}
 	return render(request, "admn/update-category.html", context)
 
+@user_passes_test(lambda u: u.is_superuser, login_url='login')
 def delete_category_view(request, pk):
 	category=AMODEL.product_category.objects.get(id=pk)
 	if request.method=='POST':
@@ -184,6 +196,7 @@ def delete_category_view(request, pk):
 
 #======================= Start order summery ===============================
 # order dashboard
+@user_passes_test(lambda u: u.is_superuser, login_url='login')
 def order_dashboard_side_var_view(request):
 	total_orders = CMODEL.order.objects.all().exclude(status='Delivered').count()
 	pending_order = CMODEL.order.objects.all().filter(status='Pending').count()
@@ -200,6 +213,7 @@ def order_dashboard_side_var_view(request):
 	return render(request, 'admn/order_dashboard.html', context)
 
 # total order view
+@user_passes_test(lambda u: u.is_superuser, login_url='login')
 def total_order_list_view(request):
 	orders = CMODEL.order.objects.all().exclude(status='Delivered')
 	context = {
@@ -208,6 +222,7 @@ def total_order_list_view(request):
 	return render(request, 'admn/order-list.html', context)
 
 # Single order view
+@user_passes_test(lambda u: u.is_superuser, login_url='login')
 def single_order_view(request, pk):
 	single_order = CMODEL.order.objects.get(id=pk)
 	status = CFORM.orderForm(instance=single_order)
@@ -225,6 +240,7 @@ def single_order_view(request, pk):
 	return render(request,'admn/single-order-view.html', context)
 
 # pending order view
+@user_passes_test(lambda u: u.is_superuser, login_url='login')
 def pending_order_list_view(request):
 	orders = CMODEL.order.objects.all().filter(status='Pending')
 	context = {
@@ -233,6 +249,7 @@ def pending_order_list_view(request):
 	return render(request, 'admn/order-list.html', context)
 
 # processing order view
+@user_passes_test(lambda u: u.is_superuser, login_url='login')
 def processing_order_list_view(request):
 	orders = CMODEL.order.objects.all().filter(status='Processing')
 	context = {
@@ -241,6 +258,7 @@ def processing_order_list_view(request):
 	return render(request, 'admn/order-list.html', context)
 
 # shipped order view
+@user_passes_test(lambda u: u.is_superuser, login_url='login')
 def shipped_order_list_view(request):
 	orders = CMODEL.order.objects.all().filter(status='Shipped')
 	context = {
@@ -249,6 +267,7 @@ def shipped_order_list_view(request):
 	return render(request, 'admn/order-list.html', context)
 
 # delivered order view
+@user_passes_test(lambda u: u.is_superuser, login_url='login')
 def delivered_order_list_view(request):
 	orders = CMODEL.order.objects.all().filter(status='Delivered')
 	context = {
