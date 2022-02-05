@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import Group
 from django.contrib.auth.models import User
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required, user_passes_test
 
 from customer import forms as CFORM
 from customer import models as CMODEL
@@ -25,6 +26,7 @@ def customerSignup(request):
 	}
 	return render(request, 'customer/signup.html',context)
 
+@login_required(login_url='login')
 def upadate_profile_view(request, pk):
 	'''
 	user=CMODEL.User.objects.get(id=pk)
@@ -58,6 +60,7 @@ def upadate_profile_view(request, pk):
 	return render(request,'customer/profile.html', context)
 
 	#Order page
+@login_required(login_url='login')
 def order_view(request):
 	#orderList = CMODEL.order.objects.all()
 	orderList = CMODEL.order.objects.filter(customer=request.user.id)
