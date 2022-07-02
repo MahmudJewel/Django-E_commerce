@@ -80,7 +80,7 @@ def home(request):
 	#add or remove functionality at home page
 	if request.method=='POST':
 		pdid=request.POST.get('idfromhtml')
-		#print(f"type pdid {type(pdid)}")
+		print(f"type pdid {pdid}")
 		if 'addToCart' in request.POST:
 			add_to_cart(request, pdid) #Call the function
 			'''
