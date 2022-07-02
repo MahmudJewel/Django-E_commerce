@@ -4,17 +4,57 @@ This web app is developed by : [Jewel Mahmud](https://mahmudjewel.herokuapp.com/
 
 Start date of developing: Aug-2021
 ## Tools
+#### Language
+	Python (3.10)
+
 ### Back-end
-	Django ==> 2.2
-	Javascript
+	Django ==> 3.2.8
+
 ### Front-end
-1. Bootstrap ==> 5.1.3
-2. Fontawesome ==> 4.7.0
-3. HTML-5
-4. CSS-3
+	Bootstrap ==> 5.1.3
+	Fontawesome ==> 4.7.0
+	HTML-5
+	CSS-3
+
+#### Other libraries / tools:
+	asgiref==3.4.1
+	django-active-link==0.1.8
+	django-crispy-forms==1.13.0
+	django-flatpickr==1.0.1
+	django-tinymce==3.4.0
+	django-widget-tweaks==1.4.9
+	Pillow==8.4.0
+	pytz==2021.3
+	sqlparse==0.4.2
+	whitenoise==5.3.0
+
 
 ## Base
-Every page includes navebar & footer.
+	Every page includes navebar & footer.
+
+# Setup
+The first thing to do is to clone the repository:
+```sh
+$ git clone https://github.com/MahmudJewel/Django-E_commerce
+```
+
+Create a virtual environment to install dependencies in and activate it:
+```sh
+$ python -m venv venv
+$ source venv/bin/activate
+```
+Then install the dependencies:
+```sh
+(venv)$ pip install -r requirements.txt
+```
+Note the `(venv)` in front of the prompt. This indicates that this terminal
+session operates in a virtual environment set up by `virtualenv2`.
+
+Once `pip` has finished downloading the dependencies:
+```sh
+(venv)$ python manage.py migrate
+(venv)$ python manage.py runserver
+```
 
 ## Home page
 Home page shows product category & products. It has a paginations of 12 products.
