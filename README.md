@@ -5,8 +5,8 @@ This web app is developed by : [Jewel Mahmud](https://mahmudjewel.herokuapp.com/
 Start date of developing: Aug-2021
 ## Tools
 ### Back-end
-1. Django ==> 2.2
-2. Javascript
+	Django ==> 2.2
+	Javascript
 ### Front-end
 1. Bootstrap ==> 5.1.3
 2. Fontawesome ==> 4.7.0
