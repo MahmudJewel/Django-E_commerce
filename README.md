@@ -41,6 +41,7 @@ $ git clone https://github.com/MahmudJewel/Django-E_commerce
 
 Create a virtual environment to install dependencies in and activate it:
 ```sh
+$ cd Django-E_commerce
 $ python -m venv venv
 $ source venv/bin/activate
 ```
